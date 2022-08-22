@@ -1,0 +1,85 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrar nuevo desfibrilador</title>
+    <link rel="stylesheet" href="https://unpkg.com/@icon/icofont/icofont.css" />
+    <link rel="stylesheet" href="../css/master.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <a class="button-back" href="/"
+        ><iconify-icon class="icon" class="icon" icon="ep:arrow-left-bold"></iconify-icon
+      ></a>
+      <h1>Patorrat</h1>
+    </nav>
+
+    <form id="form" class="form" action="/" method="POST">
+      <% for(let k in fieldsets) { const fieldset = fieldsets[k]; %>
+      <div class="fieldset-border">
+        <fieldset>
+          <legend><%= fieldset.label %></legend>
+          <% for(let key in fieldset.fields){ const inputData =
+          fieldset.fields[key]; for(let label of inputData.labels) { let value =
+          (loadedValues && loadedValues[key]) ? loadedValues[key] : ""; if(key
+          === "vehicles_disponibles_checkboxes") { try{
+          console.log(JSON.parse(loadedValues.vehicles_disponibles)[label]);
+          value = JSON.parse(loadedValues.vehicles_disponibles)[label];
+          }catch(err){console.log(err)} } const stylesClass = (inputData.type !=
+          "checkbox") ? "form-input" : "checkbox-input"; const checked = (value
+          && inputData.type === "checkbox") ? "checked" : ""; %><label class="large-label"
+            ><%= label %>
+            <input
+              type="<%= inputData.type %>"
+              value="<%= value %>"
+              <%= checked
+              %>
+            step="<%= inputData.step %>" name="<%= key %>" data-label="<%= label
+            %>" class="<%= stylesClass %>" /><span
+              class="input-feedback"
+              data-name="<%= key %>"
+            ></span
+            ><span class="tick" data-name="<%= key %>"
+              ><iconify-icon class="icon" icon="charm:tick"></iconify-icon></span></label
+          ><% } } %>
+        </fieldset>
+      </div>
+      <% } %>
+
+      <div class="btns-wrapper">
+        <button class="btn main" id="send-button" type="submit">Desa</button>
+        <a class="btn" href="/">Cancel·la</a>
+      </div>
+      <% if(locals.feedback) {
+        const feedbackClass = (!locals.error) ? "feedback-err" : "feedback-msg" %><span class="<%= feedbackClass %>"
+        ><%= feedback %></span
+      ><% } %>
+    </form>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+    <script>
+      const sendButton = document.getElementById("send-button");
+      const disp = document.getElementsByName("disponible")[0];
+
+      // Make checkboxes' value be true or false
+      sendButton.addEventListener("click", () => {
+        const vehiclesCheckboxes = document.getElementsByName(
+          "vehicles_disponibles_checkboxes"
+        );
+        const dispVehiclesInput = document.getElementsByName(
+          "vehicles_disponibles"
+        )[0];
+        let dispVehicles = {};
+        for (let el of vehiclesCheckboxes) {
+          dispVehicles[el.dataset.label] = el.checked;
+        }
+
+        dispVehiclesInput.value = JSON.stringify(dispVehicles);
+        console.log(dispVehiclesInput.value);
+      });
+    </script>
+
+    <script src="../js/regex.js"></script>
+    <script src="../js/validate-forms.js"></script>
+  </body>
+</html>
