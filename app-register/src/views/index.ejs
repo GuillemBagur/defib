@@ -15,34 +15,44 @@
       <h1>Patorrat</h1>
     </nav>
 
-    <form id="form" class="form" action="/" method="POST">
-      <% for(let k in fieldsets) { const fieldset = fieldsets[k]; %>
-      <div class="fieldset-border">
-        <fieldset>
-          <legend><%= fieldset.label %></legend>
-          <% for(let key in fieldset.fields){ const inputData =
-          fieldset.fields[key]; for(let label of inputData.labels) { let value =
-          (loadedValues && loadedValues[key]) ? loadedValues[key] : ""; if(key
-          === "vehicles_disponibles_checkboxes") { try{
-          console.log(JSON.parse(loadedValues.vehicles_disponibles)[label]);
-          value = JSON.parse(loadedValues.vehicles_disponibles)[label];
-          }catch(err){console.log(err)} } const stylesClass = (inputData.type !=
-          "checkbox") ? "form-input" : "checkbox-input"; const checked = (value
-          && inputData.type === "checkbox") ? "checked" : ""; %><label class="large-label"
-            ><%= label %>
+    <%
+      const renderInputs = (inputs) => {
+        for(let key in inputs){
+          const inputData = inputs[key];
+          for(let label of inputData.labels) {
+            let value = (loadedValues && loadedValues[key]) ? loadedValues[key] : "";
+            if(key === "vehicles_disponibles_checkboxes") {
+              try{
+                value = JSON.parse(loadedValues.vehicles_disponibles)[label];
+              }catch(err){
+                console.log(err)} 
+              }
+              
+              const stylesClass = (inputData.type !="checkbox") ? "form-input" : "checkbox-input";
+              const checked = (value && inputData.type === "checkbox") ? "checked" : ""; %
+              <label class="large-label"><%= label %>
             <input
               type="<%= inputData.type %>"
               value="<%= value %>"
-              <%= checked
-              %>
-            step="<%= inputData.step %>" name="<%= key %>" data-label="<%= label
-            %>" class="<%= stylesClass %>" /><span
+              <%= checked %>
+              step="<%= inputData.step %>" name="<%= key %>" data-label="<%= label %>"
+              class="<%= stylesClass %>" />
+            <span
               class="input-feedback"
               data-name="<%= key %>"
             ></span
             ><span class="tick" data-name="<%= key %>"
               ><iconify-icon class="icon" icon="charm:tick"></iconify-icon></span></label
-          ><% } } %>
+          ><% } }
+      }
+    %>
+
+    <form id="form" class="form" action="/" method="POST">
+      <% for(let k in fieldsets) { const fieldset = fieldsets[k]; %>
+      <div class="fieldset-border">
+        <fieldset>
+          <legend><%= fieldset.label %></legend>
+          <% renderInputs(fieldset.fields); %>
         </fieldset>
       </div>
       <% } %>
