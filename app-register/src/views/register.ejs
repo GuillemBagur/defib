@@ -16,6 +16,7 @@
           type="text"
           placeholder="Nombre de usuario"
           name="username"
+          required
         /><span class="tick" data-name="username"
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
@@ -28,6 +29,9 @@
           type="text"
           placeholder="ID del desfibr."
           name="device"
+          minlength="24"
+          maxlength="24"
+          required
         /><span class="tick" data-name="device"
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
@@ -40,6 +44,7 @@
           type="password"
           placeholder="Contraseña"
           name="pw"
+          required
         /><span class="tick" data-name="pw"
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
@@ -53,6 +58,7 @@
           placeholder="Contraseña"
           name="repeatPw"
           data-checkpw="pw"
+          required
         /><span class="tick" data-name="repeatPw"
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
@@ -64,7 +70,7 @@
       </label>
 
       <button class="btn main" type="submit">Register</button>
-      <% if(locals.error) { %><span class="feedback-err"><%= error %></span><% }
+      <% if(locals.error) { %><span class="feedback-popup feedback-err"><%= error %></span><% }
       %>
     </form>
 

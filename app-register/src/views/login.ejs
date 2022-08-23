@@ -35,12 +35,10 @@
       </label>
 
       <button class="btn main" type="submit">Login</button>
-      <% if(locals.error) { %><span class="feedback-err"><%= error %></span><% }
+      <% if(locals.error) { %><span class="feedback-popup feedback-err"><%= error %></span><% }
       %>
     </form>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
-    <script src="../js/regex.js"></script>
-    <script src="../js/validate-forms.js"></script>
   </body>
 </html>

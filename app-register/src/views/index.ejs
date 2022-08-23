@@ -4,7 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registrar nuevo desfibrilador</title>
-    <link rel="stylesheet" href="https://unpkg.com/@icon/icofont/icofont.css" />
     <link rel="stylesheet" href="../css/master.css" />
   </head>
   <body>
@@ -29,7 +28,7 @@
               }
               
               const stylesClass = (inputData.type !="checkbox") ? "form-input" : "checkbox-input";
-              const checked = (value && inputData.type === "checkbox") ? "checked" : ""; %
+              const checked = (value && inputData.type === "checkbox") ? "checked" : ""; %>
               <label class="large-label"><%= label %>
             <input
               type="<%= inputData.type %>"
@@ -62,7 +61,7 @@
         <a class="btn" href="/">Cancel·la</a>
       </div>
       <% if(locals.feedback) {
-        const feedbackClass = (!locals.error) ? "feedback-err" : "feedback-msg" %><span class="<%= feedbackClass %>"
+        const feedbackClass = (!locals.error) ? "feedback-err" : "feedback-msg" %><span class="feedback-popup <%= feedbackClass %>"
         ><%= feedback %></span
       ><% } %>
     </form>
@@ -87,6 +86,28 @@
         dispVehiclesInput.value = JSON.stringify(dispVehicles);
         console.log(dispVehiclesInput.value);
       });
+    </script>
+
+    <script>
+      const xCoordInput = document.getElementsByName("x")[0];
+      const yCoordInput = document.getElementsByName("y")[0];
+
+      const addressInput = document.getElementsByName("adreca")[0];
+
+      const checkCoordsAdress = async () => {
+        console.log(1);
+        const coords = {x: xCoordInput.value, y: yCoordInput.value};
+        const address = "1600 Pennsylvania Ave NW, Washington DC";
+
+        const key = "b36aad74de76f12b39eed3fcab0d5b6d";
+
+        const res = await fetch(`http://api.positionstack.com/v1/forward?access_key=${key}&query=${address}`);
+        const json = await res.json();
+        const data = json.data[0];
+        console.log(data);
+      }
+
+      addressInput.addEventListener("change", checkCoordsAdress);
     </script>
 
     <script src="../js/regex.js"></script>
