@@ -10,6 +10,7 @@
     <nav class="nav"><h1>Register</h1></nav>
 
     <form id="form" class="form" action="register" method="POST">
+      <input id="validated-inputs" type="hidden" value="">
       <label
         ><input
           class="form-input"
@@ -70,7 +71,8 @@
       </label>
 
       <button class="btn main" type="submit">Register</button>
-      <% if(locals.error) { %><span class="feedback-popup feedback-err"><%= error %></span><% }
+      <span id="popup-must-validate" class="feedback-popup feedback-err">Algunos datos no son válidos</span>
+      <% if(locals.error) { %><span class="feedback-popup feedback-err show"><%= error %></span><% }
       %>
     </form>
 

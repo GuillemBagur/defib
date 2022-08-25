@@ -1,7 +1,15 @@
+const form = document.getElementById("form");
+const validatedInputs = document.getElementById("validated-inputs");
+const popupMustValidate = document.getElementById("popup-must-validate");
+
+form.addEventListener("submit", (e) => {
+  if (validatedInputs.value.length) {
+    popupMustValidate.classList.add("show");
+    e.preventDefault();
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
-
-  const form = document.getElementById("form");
-
   const checkPws = (e) => {
     const input = e.target;
     if (input.name != "repeatPw") return;
@@ -18,15 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const repeatPw = document.getElementsByName("repeatPw")[0].value;
     const pw = document.getElementsByName("pw")[0].value;
 
-    if(repeatPw != pw && repeatPw.length) {
+    if (repeatPw != pw && repeatPw.length) {
       input.classList.add("not-validated");
       if (span) span.innerHTML = "Las contraseñas no coinciden.";
+      validatedInputs.value = "error";
       return;
     }
 
     if (repeatPw === pw) {
       input.classList.add("validated");
       if (tick) tick.classList.add("show");
+      validatedInputs.value = "";
     }
   };
 
@@ -56,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!checkMatch(input) && input.value != "") {
       if (span) span.innerHTML = toValidate[input.name].error;
       input.classList.add("not-validated");
+      validatedInputs.value = "error";
       return;
     }
 
@@ -63,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (input.value != "") {
       input.classList.add("validated");
       if (tick) tick.classList.add("show");
+      validatedInputs.value = "";
     }
   };
 

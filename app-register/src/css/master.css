@@ -125,6 +125,10 @@ h1 {
   z-index: 3;
 }
 
+.form label.large-label .tick {
+  transform: translateY(-10%);
+}
+
 .form .tick.show {
   opacity: 1;
   transition: all .3s;
@@ -222,16 +226,23 @@ h1 {
 }
 
 .feedback-popup {
+  display: none !important;
+  opacity: 0;
+  z-index: 5;
   position: fixed;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   padding: 1rem;
   border-radius: 10px;
-  background-color: blue;
+  background-color: #17a646;
   color: white;
+}
+
+.feedback-popup.show {
   animation: feedback-popup 3s;
   animation-fill-mode: forwards;
+  display: block !important;
 }
 
 .feedback-err, .feedback-msg {

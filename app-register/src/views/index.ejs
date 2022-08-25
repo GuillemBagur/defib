@@ -15,6 +15,7 @@
     </nav>
 
     <%
+
       const renderInputs = (inputs) => {
         for(let key in inputs){
           const inputData = inputs[key];
@@ -28,12 +29,14 @@
               }
               
               const stylesClass = (inputData.type !="checkbox") ? "form-input" : "checkbox-input";
-              const checked = (value && inputData.type === "checkbox") ? "checked" : ""; %>
+              const checked = (value && inputData.type === "checkbox") ? "checked" : "";
+              const required = (inputData.required) ? "required" : ""; %>
               <label class="large-label"><%= label %>
             <input
               type="<%= inputData.type %>"
               value="<%= value %>"
               <%= checked %>
+              <%= required %>
               step="<%= inputData.step %>" name="<%= key %>" data-label="<%= label %>"
               class="<%= stylesClass %>" />
             <span
@@ -47,6 +50,7 @@
     %>
 
     <form id="form" class="form" action="/" method="POST">
+      <input id="validated-inputs" type="hidden" value="">
       <% for(let k in fieldsets) { const fieldset = fieldsets[k]; %>
       <div class="fieldset-border">
         <fieldset>
@@ -60,8 +64,9 @@
         <button class="btn main" id="send-button" type="submit">Desa</button>
         <a class="btn" href="/">Cancel·la</a>
       </div>
+      <span id="popup-must-validate" class="feedback-popup feedback-err">Algunos datos no son válidos</span>
       <% if(locals.feedback) {
-        const feedbackClass = (!locals.error) ? "feedback-err" : "feedback-msg" %><span class="feedback-popup <%= feedbackClass %>"
+        const feedbackClass = (!locals.error) ? "feedback-err" : "feedback-msg" %><span class="show feedback-popup <%= feedbackClass %>"
         ><%= feedback %></span
       ><% } %>
     </form>
@@ -88,28 +93,7 @@
       });
     </script>
 
-    <script>
-      const xCoordInput = document.getElementsByName("x")[0];
-      const yCoordInput = document.getElementsByName("y")[0];
-
-      const addressInput = document.getElementsByName("adreca")[0];
-
-      const checkCoordsAdress = async () => {
-        console.log(1);
-        const coords = {x: xCoordInput.value, y: yCoordInput.value};
-        const address = "1600 Pennsylvania Ave NW, Washington DC";
-
-        const key = "b36aad74de76f12b39eed3fcab0d5b6d";
-
-        const res = await fetch(`http://api.positionstack.com/v1/forward?access_key=${key}&query=${address}`);
-        const json = await res.json();
-        const data = json.data[0];
-        console.log(data);
-      }
-
-      addressInput.addEventListener("change", checkCoordsAdress);
-    </script>
-
+    <script src="../js/check-address.js"></script>
     <script src="../js/regex.js"></script>
     <script src="../js/validate-forms.js"></script>
   </body>

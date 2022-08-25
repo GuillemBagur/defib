@@ -2,22 +2,22 @@ module.exports.desfibParams = {
   metadata: {
     label: "Metadatos",
     fields: {
-      the_geom: { type: "text", labels: ["Geoma"] },
-      objectid: { type: "text", labels: ["ID del dispositiu"] },
-      nom: { type: "text", labels: ["Nom"] },
+      the_geom: { type: "text", labels: ["Geoma"], required: true },
+      objectid: { type: "text", labels: ["ID del dispositiu"], required: true },
+      nom: { type: "text", labels: ["Nom"], required: true },
     },
   },
 
   location: {
     label: "Ubicación",
     fields: {
-      x: { type: "number", labels: ["X"], step: ".0000001" },
-      y: { type: "number", labels: ["Y"], step: ".0000001" },
+      x: { type: "number", labels: ["X"], step: ".00000000000000001", required: true },
+      y: { type: "number", labels: ["Y"], step: ".00000000000000001", required: true },
       adreca: { type: "text", labels: ["Adreça"] },
-      municipi: { type: "text", labels: ["Municipi"] },
-      ine_mun: { type: "text", labels: ["Ine Municipi"] },
-      illa: { type: "text", labels: ["Illa"] },
-      tel: { type: "tel", labels: ["Telèfon"] },
+      municipi: { type: "text", labels: ["Municipi"], required: true },
+      ine_mun: { type: "text", labels: ["Ine Municipi"] }, // Wtf q es
+      illa: { type: "text", labels: ["Illa"], required: true },
+      tel: { type: "tel", labels: ["Telèfon"], required: true },
     },
   },
 

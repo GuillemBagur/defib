@@ -28,8 +28,16 @@ const toValidate = {
   username: {
     regex: /^[a-zA-Z0-9_]*$/,
     error:
-      "Los nombres de usuario solo pueden contener letras, números y guiones bajos",
+      "Los nombres de usuario solo pueden contener letras, números y guiones bajos.",
   },
+  x: {
+    regex: /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)$/,
+    error: "No es una coordenada de latitud válida."
+  },
+  y: {
+    regex: /^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/,
+    error: "No es una coordenada de longitud válida."
+  }
 };
 
 module.exports.regex = toValidate;
