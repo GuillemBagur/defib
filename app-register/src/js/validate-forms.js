@@ -2,6 +2,31 @@ const form = document.getElementById("form");
 const validatedInputs = document.getElementById("validated-inputs");
 const popupMustValidate = document.getElementById("popup-must-validate");
 
+const feedbackInput = (input, success, message) => {
+  const span = document.querySelector(
+    `span.input-feedback[data-name=${input.name}]`
+  );
+
+  const tick = document.querySelector(`span.tick[data-name=${input.name}]`);
+
+  if (span) span.innerHTML = "";
+  input.classList.remove("validated");
+  input.classList.remove("not-validated");
+  if (tick) tick.classList.remove("show");
+
+  if (!success) {
+    input.classList.add("not-validated");
+    if (span) span.innerHTML = message;
+    validatedInputs.value = "error";
+
+    return;
+  }
+
+  input.classList.add("validated");
+  if (tick) tick.classList.add("show");
+  validatedInputs.value = "";
+};
+
 form.addEventListener("submit", (e) => {
   if (validatedInputs.value.length) {
     popupMustValidate.classList.add("show");
@@ -13,12 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkPws = (e) => {
     const input = e.target;
     if (input.name != "repeatPw") return;
-    const span = document.querySelector(
-      `span.input-feedback[data-name=${input.name}]`
-    );
 
     // Get the tick inside every input to, if everything is correct, appear.
-    const tick = document.querySelector(`span.tick[data-name=${input.name}]`);
+
     if (span) span.innerHTML = "";
     input.classList.remove("validated");
     input.classList.remove("not-validated");
@@ -27,16 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const pw = document.getElementsByName("pw")[0].value;
 
     if (repeatPw != pw && repeatPw.length) {
-      input.classList.add("not-validated");
-      if (span) span.innerHTML = "Las contraseñas no coinciden.";
-      validatedInputs.value = "error";
+      feedbackInput(input, false, "Las contraseñas no coinciden");
       return;
     }
 
     if (repeatPw === pw) {
-      input.classList.add("validated");
-      if (tick) tick.classList.add("show");
-      validatedInputs.value = "";
+      feedbackInput(input, true);
     }
   };
 
@@ -57,24 +75,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const tick = document.querySelector(`span.tick[data-name=${input.name}]`);
 
     // We start hiding all feedback elements.
-    if (span) span.innerHTML = "";
-    input.classList.remove("validated");
-    input.classList.remove("not-validated");
-    if (tick) tick.classList.remove("show");
 
     // If error, display only error feedback els.
     if (!checkMatch(input) && input.value != "") {
-      if (span) span.innerHTML = toValidate[input.name].error;
-      input.classList.add("not-validated");
-      validatedInputs.value = "error";
+      feedbackInput(input, false, toValidate[input.name].error);
       return;
     }
 
     // In case of correct, display only positive feedback els.
     if (input.value != "") {
-      input.classList.add("validated");
-      if (tick) tick.classList.add("show");
-      validatedInputs.value = "";
+      feedbackInput(input, true);
     }
   };
 

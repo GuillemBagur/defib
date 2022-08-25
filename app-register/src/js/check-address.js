@@ -24,7 +24,6 @@ const checkCoordsAdress = async () => {
   );
 
   const json = await res.json();
-  console.log(json);
   const data = json.results[0];
 
   const { lat, lon } = data;
@@ -34,17 +33,14 @@ const checkCoordsAdress = async () => {
   };
 
   const diam = pitagoras(diffs.x, diffs.y);
-  console.log(diffs);
-  console.log(diam);
   if (diam > maxDiam) {
-    addressFeedback.innerHTML = "Las coordenadas y la dirección no concuerdan";
+    feedbackInput(addressInput, false, "Las coordenadas y la dirección no concuerdan");
     return;
   }
 
-  const tick = document.querySelector(`span.tick[data-name=adreca]`);
-  addressFeedback.innerHTML = "";
-  addressInput.classList.add("validated");
-  if (tick) tick.classList.add("show");
+  feedbackInput(addressInput, true);
 };
 
 addressInput.addEventListener("change", checkCoordsAdress);
+xCoordInput.addEventListener("change", checkCoordsAdress);
+yCoordInput.addEventListener("change", checkCoordsAdress);
