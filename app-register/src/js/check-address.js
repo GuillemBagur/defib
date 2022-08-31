@@ -1,6 +1,6 @@
-const xCoordInput = document.getElementsByName("x")[0];
-const yCoordInput = document.getElementsByName("y")[0];
-const addressInput = document.getElementsByName("adreca")[0];
+const xCoordInput = document.getElementsByName("X")[0];
+const yCoordInput = document.getElementsByName("Y")[0];
+const addressInput = document.getElementsByName("ADRECA")[0];
 const addressFeedback = document.querySelector("[data-name=adreca]");
 
 const pitagoras = (c1, c2) => {

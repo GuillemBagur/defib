@@ -21,9 +21,11 @@
           const inputData = inputs[key];
           for(let label of inputData.labels) {
             let value = (loadedValues && loadedValues[key]) ? loadedValues[key] : "";
-            if(key === "vehicles_disponibles_checkboxes") {
+            if(key === "VEHICLES_DISPONIBLES_CHECKBOXES") {
               try{
-                value = JSON.parse(loadedValues.vehicles_disponibles)[label];
+                if(loadedValues.VEHICLES_DISPONIBLES){
+                  value = JSON.parse(loadedValues.VEHICLES_DISPONIBLES)[label];
+                }
               }catch(err){
                 console.log(err)} 
               }
@@ -70,26 +72,33 @@
         ><%= feedback %></span
       ><% } %>
     </form>
+
+    <% if(locals.dbError) {
+        %><span class="feedback-popup show feedback-err">No s'ha pogut connectar amb la Base de Dades.</span><%
+    } %>
     <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
     <script>
       const sendButton = document.getElementById("send-button");
-      const disp = document.getElementsByName("disponible")[0];
+      const disp = document.getElementsByName("DISPONIBLE")[0];
 
       // Make checkboxes' value be true or false
       sendButton.addEventListener("click", () => {
         const vehiclesCheckboxes = document.getElementsByName(
-          "vehicles_disponibles_checkboxes"
+          "VEHICLES_DISPONIBLES_CHECKBOXES"
         );
         const dispVehiclesInput = document.getElementsByName(
-          "vehicles_disponibles"
+          "VEHICLES_DISPONIBLES"
         )[0];
         let dispVehicles = {};
         for (let el of vehiclesCheckboxes) {
+          console.log(el.dataset.label.toUpperCase());
           dispVehicles[el.dataset.label] = el.checked;
         }
 
         dispVehiclesInput.value = JSON.stringify(dispVehicles);
         console.log(dispVehiclesInput.value);
+        disp.value = disp.checked;
+        console.log(disp.value);
       });
     </script>
 

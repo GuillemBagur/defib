@@ -42,8 +42,10 @@ const connectDB = (collection) => {
     mongoose.connect(
       `mongodb+srv://guillem:test@cluster0.sqgy5bb.mongodb.net/${collection}`
     );
+    return true;
   } catch (err) {
     console.log(err);
+    return false;
   }
 };
 
@@ -56,13 +58,16 @@ app.get("/", async (req, res) => {
     return;
   }
 
-  connectDB(dbName);
+  const con = connectDB(dbName);
   /* Fetch the current data from DB to render it */
   const [data] = await DesfibSchema.find({ _id: id });
+
+  const dbError = !con;
 
   res.render("index", {
     fieldsets: desfibs.desfibParams, // The inputs list to render into the form
     loadedValues: data, // The data to fill those inputs
+    dbError: dbError
   });
 });
 
@@ -70,10 +75,11 @@ app.post("/", async (req, res) => {
   if (!req.session.id) return;
   const id = req.session.desfId;
   let desfibData = req.body;
-  desfibData.disponible = desfibData.disponible !== undefined ? true : false;
+  desfibData.DISPONIBLE = desfibData.DISPONIBLE !== undefined ? true : false;
   // Check if those params come from the form sent (by measuring the length is enough)
   if (desfibData.length !== desfibs.length) return;
 
+  // Check all data is validated
   for(let key in desfibData) {
     const data = desfibData[key];
     if(!regex[key]) continue;
