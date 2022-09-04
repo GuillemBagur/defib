@@ -91,14 +91,11 @@
         )[0];
         let dispVehicles = {};
         for (let el of vehiclesCheckboxes) {
-          console.log(el.dataset.label.toUpperCase());
           dispVehicles[el.dataset.label] = el.checked;
         }
 
         dispVehiclesInput.value = JSON.stringify(dispVehicles);
-        console.log(dispVehiclesInput.value);
         disp.value = disp.checked;
-        console.log(disp.value);
       });
     </script>
 
