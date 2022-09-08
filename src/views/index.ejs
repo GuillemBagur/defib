@@ -54,7 +54,7 @@
     <a class="btn main" href="tel:+34 682 57 20 05">Avisar al 112</a>
   </nav>
 
-  <div class="wrapper">
+  <div id="wrapper" class="wrapper">
     <% console.log(locals.defibs.length) %>
     <% if(locals.defibs.length) { %>
       <h2 class="mt-4 mb-1">Quan hagis triat un desfibril·lador,
@@ -64,24 +64,34 @@
         <% checkIfDefib(); %>
       </ul>
     <% }else { %>
-      <h2 class="mt-4 mb-1">Sembla que no hi ha desfibril·ladors gaire a prop. Sisplau, fes companyia a la víctima fins que arribin les autoritats.
-        <br /> 
-        <br />
-        Mentrestant, no perdis la calma. Si no saps fer la reanimació cardiopulmonar, potser trobis a algú capacitat fent clic a aquest botó. 
+      <h2 class="mt-4 mb-1">
+        Sembla que no hi ha desfibril·ladors gaire a prop. Sisplau, fes companyia a la víctima fins que arribin les autoritats.
       </h2>
-      <div class="bottom-btn centerer"><a class="big btn main center" href="/volunteers">Trobar voluntaris</a></div>
       
     <% } %>
 
+    <span id="feedback-popup" class="feedback-popup"></span>
+
+    <script src="../html-js/functions.js"></script>
+    <script src="../html-js/feedback-popup.js"></script>
+
     <% if(locals.acc && !locals.dbError) {
       if(acc && acc > 500) {
-        %><span class="feedback-popup show feedback-err">La localització no és gaire precisa.</span><%
+        %>
+        <script>
+          showFBPopup("La localització no és gaire precisa", "feedback-err");
+        </script>
+        <%
       }
     } %>
 
     <% if(locals.dbError) {
-        %><span class="feedback-popup show feedback-err">No s'ha pogut connectar amb la Base de Dades.</span><%
+        %><script>
+          showFBPopup("No s'ha pogut connectar amb la Base de Dades", "feedback-err");
+        </script><%
     } %>
+
+    
   </div>
   <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
 
@@ -94,25 +104,7 @@
 
 
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    
-
-    const emitNewIncident = () => {
-      const url = window.location.search;
-      const params = new URLSearchParams(url);
-      const lat = params.get("lat");
-      const lon = params.get("lon");
-      if(!lat || !lon) return;
-      const incidentId = `${lat},${lon}`;
-      const incident = {x: lat, y: lon};
-      const socket = io();
-      socket.emit("newIncident", incident);
-    }
-
-    emitNewIncident();
-  </script>
-
-  
+  <script src="../html-js/index.js"></script>
 </body>
 
 </html>

@@ -109,6 +109,7 @@ io.on("connection", (socket) => {
       y: incident.y,
       city: city,
       volunteers: 0,
+      timestamp: funcs.getTimeStamp()
     });
 
     IncidentSchema.find({ id: socket.id }, (err, docs) => {
@@ -126,6 +127,7 @@ io.on("connection", (socket) => {
     const update = { volunteers: volunteers };
     await IncidentSchema.findOneAndUpdate(filter, update);
     autoSendIncidents(socket);
+    socket.broadcast.emit("volunteerComing");
   });
 
   socket.on("disconnect", () => {

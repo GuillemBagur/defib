@@ -1,3 +1,4 @@
+const { get } = require("http");
 const mongoose = require("mongoose");
 
 
@@ -97,3 +98,11 @@ const checkReqArgs = (req, res, reqArgs) => {
 };
 
 module.exports.checkReqArgs = checkReqArgs;
+
+
+
+const getTimeStamp = () => {
+  return Math.floor(Date.now() / 1000);
+}
+
+module.exports.getTimeStamp = getTimeStamp;

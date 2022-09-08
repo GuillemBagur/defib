@@ -5,7 +5,8 @@ const IncidentSchema = new mongoose.Schema({
   x: String,
   y: String,
   city: String,
-  volunteers: Number
+  volunteers: Number,
+  timestamp: Number
 });
 
 module.exports = mongoose.model("IncidentSchema", IncidentSchema);

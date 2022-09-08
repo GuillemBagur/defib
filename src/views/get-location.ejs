@@ -12,21 +12,6 @@
       <h3>Així, agilitzem el temps de reacció de les autoritats.</h3>
     </div>
 
-    <script>
-      const sendPosition = ({ coords }) => {
-        if (!coords) {
-          alert("Error");
-          return;
-        }
-        
-        window.location.href = `/?lat=${coords.latitude}&lon=${coords.longitude}&acc=${coords.accuracy}`;
-      };
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(sendPosition);
-      } else {
-        alert("Geolocation is not supported by this browser.");
-      }
-    </script>
+    <script src="../html-js/get-location.js"></script>
   </body>
 </html>
