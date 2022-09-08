@@ -1,0 +1,118 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patorrat</title>
+  <link rel="stylesheet" href="../css/main-app.css" />
+</head>
+
+<body>
+  <% const renderDefibs = (defibs) => {
+        for(let defib of defibs) { %>
+  <li class="def"><a href="tel:<%= defib.TEL %>">
+      <div class="def-data">
+        <h3 class="def-title"><%= defib.NOM %></h3>
+        <h4 class="def-subtitle"><%= defib.ADRECA %></h4>
+      </div>
+      <span class="temps-estimat"><%= defib.TIME %>" <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
+    </a></li>
+  <% }
+    }
+
+
+    const renderVolunteers = (volunteers) => {
+      %>
+  <h3>Hemos encontrado algunos voluntarios cerca, no tardarán en llegar.</h3>
+  <h4>Ellos saben hacer la reanimación cardiopulmonar correctamente.</h4>
+  <%
+    }
+
+
+    %>
+
+
+  <% const checkIfDefib = () => {
+        if(!locals.defibs) { 
+          if(!locals.volunteers) { %>
+  <p>No hay desfibriladores disponibles</p>
+  <% } else { renderVolunteers(volunteers); }
+        }else{
+          renderDefibs(defibs);
+        }
+    } %>
+
+  <div class="popup centered show">
+    <h3 class="popup-title">Avisar al 112?</h3>
+    <div class="btn-link-wrapper"><a class="btn main center" href="tel:+34 682 57 20 05">Sí, avisa</a></div>
+    <button onclick="hidePopup(this)" class="btn">Cancel·la</button>
+  </div>
+
+  <nav>
+    <a href="/defib"><img /></a>
+    <a class="btn main" href="tel:+34 682 57 20 05">Avisar al 112</a>
+  </nav>
+
+  <div class="wrapper">
+    <% console.log(locals.defibs.length) %>
+    <% if(locals.defibs.length) { %>
+      <h2 class="mt-4 mb-1">Quan hagis triat un desfibril·lador,
+        fes-hi clic a sobre.
+      </h2>
+      <ul class="defs-list">
+        <% checkIfDefib(); %>
+      </ul>
+    <% }else { %>
+      <h2 class="mt-4 mb-1">Sembla que no hi ha desfibril·ladors gaire a prop. Sisplau, fes companyia a la víctima fins que arribin les autoritats.
+        <br /> 
+        <br />
+        Mentrestant, no perdis la calma. Si no saps fer la reanimació cardiopulmonar, potser trobis a algú capacitat fent clic a aquest botó. 
+      </h2>
+      <div class="bottom-btn centerer"><a class="big btn main center" href="/volunteers">Trobar voluntaris</a></div>
+      
+    <% } %>
+
+    <% if(locals.acc && !locals.dbError) {
+      if(acc && acc > 500) {
+        %><span class="feedback-popup show feedback-err">La localització no és gaire precisa.</span><%
+      }
+    } %>
+
+    <% if(locals.dbError) {
+        %><span class="feedback-popup show feedback-err">No s'ha pogut connectar amb la Base de Dades.</span><%
+    } %>
+  </div>
+  <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+
+  <script>
+    const hidePopup = el => {
+      const parent = el.parentNode;
+      parent.classList.remove("show");
+    }
+  </script>
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    
+
+    const emitNewIncident = () => {
+      const url = window.location.search;
+      const params = new URLSearchParams(url);
+      const lat = params.get("lat");
+      const lon = params.get("lon");
+      if(!lat || !lon) return;
+      const incidentId = `${lat},${lon}`;
+      const incident = {x: lat, y: lon};
+      const socket = io();
+      socket.emit("newIncident", incident);
+    }
+
+    emitNewIncident();
+  </script>
+
+  
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patorrat</title>
+    <link rel="stylesheet" href="../css/main-app.css" />
+  </head>
+  <body>
+    <div class="wrapper mt-4">
+      <h2>Estem detectant la teva ubicació actual.</h2>
+      <h3>Així, agilitzem el temps de reacció de les autoritats.</h3>
+    </div>
+
+    <script>
+      const sendPosition = ({ coords }) => {
+        if (!coords) {
+          alert("Error");
+          return;
+        }
+        
+        window.location.href = `/?lat=${coords.latitude}&lon=${coords.longitude}&acc=${coords.accuracy}`;
+      };
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendPosition);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    </script>
+  </body>
+</html>

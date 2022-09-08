@@ -1,0 +1,143 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(37, 37, 37);
+  padding: 0;
+  margin: 0;
+}
+
+a,
+button {
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.btn-link-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.btn {
+  outline: none !important;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: rgba(230, 230, 230);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.btn.big {
+  font-size: 1.2rem;
+  padding: 1rem 1.3rem;
+}
+
+.btn.main::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(-45deg, #ff0000 -21%, #0400ff 100%);
+  transform: translateY(1rem) scale(0.95);
+  filter: blur(32px);
+  opacity: var(0.7);
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+
+.btn:hover {
+  transform: scale(1.02);
+  transition: all 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+  transition: all 0.2s;
+}
+
+.btn.main {
+  color: white;
+  background-image: linear-gradient(45deg, blue, red);
+}
+
+.button-back {
+  padding: 0.7rem;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.2s;
+  border-radius: 5px;
+}
+
+.button-back:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.2s;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+@keyframes feedback-popup {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 6rem);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 6rem);
+  }
+}
+
+.feedback-popup {
+  display: none !important;
+  opacity: 0;
+  z-index: 5;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #17a646;
+  color: white;
+}
+
+.feedback-popup.show {
+  animation: feedback-popup 4s;
+  animation-fill-mode: forwards;
+  display: block !important;
+}
+
+.feedback-err,
+.feedback-msg {
+  margin-top: 0.3rem;
+  background-color: rgb(185, 48, 48);
+  text-align: center;
+  display: block;
+}
+
+.feedback-msg {
+  background-color: rgb(64, 128, 64);
+}

@@ -1,0 +1,83 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voluntarios</title>
+  </head>
+  <body>
+    <datalist id="cities">
+      <option value="Ciutadella de Menorca">Ciutadella de Menorca</option>
+      <option value="Ferreries">Ferreries</option>
+      <option value="Es Mercadal">Es Mercadal</option>
+    </datalist> 
+    <input type="text" id="city-input" list="cities">
+    <button id="search-btn" class="btn main">Buscar</button>
+    <ul class="incidents-list" id="incidents-list"></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const incidentsList = document.getElementById("incidents-list");
+      const searchBtn = document.getElementById("search-btn");
+      const cityInput = document.getElementById("city-input");
+      let city = localStorage.getItem("volunteer-city");
+
+      socket.on("incidents", (incidents) => {
+        city = cityInput.value;
+        const filteredIncidents = incidents.filter(el => el.city === city);
+        incidentsList.innerHTML = "";
+        for (let incident of filteredIncidents) {
+          incidentsList.innerHTML += `
+            <li data-id="${incident.id}" data-x="${incident.x}" data-y="${incident.y}" data-volunteers="${incident.volunteers}">${incident.x}, ${incident.y} (${incident.volunteers})</li>
+        `;
+        }
+      });
+
+      const getIncidents = (city) => {
+        socket.emit("get-incidents", city);
+      }
+
+      
+      const getCityOnLoad = () => {
+        city = localStorage.getItem("volunteer-city");
+        getIncidents(city);
+        if(!city) return;
+        cityInput.value = city;
+      }
+      
+      getCityOnLoad();
+      
+      searchBtn.addEventListener("click", () => {
+        const city = cityInput.value;
+        localStorage.setItem("volunteer-city", city);
+        getIncidents(city);
+      });
+
+      const openGoogleMaps = (from, to) => {
+        if(!from.x || !from.y || !to.x || !to.y) return;
+        const newTab = window.open(`https://www.google.es/maps/dir/${from.x},${from.y}/${to.x},${to.y}/`, "_blank");
+        newTab.focus();
+      }
+
+      incidentsList.addEventListener("click", e => {
+        const el = e.target;
+        if(el.tagName != "LI") return;
+        if(!el.dataset.id) return;
+        const id = el.dataset.id;
+        const volunteersNum = el.dataset.volunteers;
+        socket.emit("addVolunteer", id, volunteersNum);
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(({coords}) => {
+            const from = {x: coords.latitude, y: coords.longitude};
+            const to = {x: el.dataset.x, y: el.dataset.y};
+            openGoogleMaps(from, to);
+          });
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      });
+
+    </script>
+  </body>
+</html>
