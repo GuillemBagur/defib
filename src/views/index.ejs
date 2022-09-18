@@ -11,12 +11,12 @@
 <body>
   <% const renderDefibs = (defibs) => {
         for(let defib of defibs) { %>
-  <li class="def"><a href="tel:<%= defib.TEL %>">
-      <div class="def-data">
-        <h3 class="def-title"><%= defib.NOM %></h3>
-        <h4 class="def-subtitle"><%= defib.ADRECA %></h4>
+  <li class="el main-list__el"><a href="tel:<%= defib.TEL %>">
+      <div class="el__data">
+        <h3 class="el__title"><%= defib.NOM %></h3>
+        <h4 class="el__subtitle"><%= defib.ADRECA %></h4>
       </div>
-      <span class="temps-estimat"><%= defib.TIME %>" <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
+      <span class="el__append"><%= defib.TIME %>" <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
     </a></li>
   <% }
     }
@@ -44,8 +44,8 @@
     } %>
 
   <div class="popup centered show">
-    <h3 class="popup-title">Avisar al 112?</h3>
-    <div class="btn-link-wrapper"><a class="btn main center" href="tel:+34 682 57 20 05">Sí, avisa</a></div>
+    <h3 class="popup__title">Avisar al 112?</h3>
+    <div class="btn-w"><a class="btn main center" href="tel:+34 682 57 20 05">Sí, avisa</a></div>
     <button onclick="hidePopup(this)" class="btn">Cancel·la</button>
   </div>
 
@@ -57,10 +57,10 @@
   <div id="wrapper" class="wrapper">
     <% console.log(locals.defibs.length) %>
     <% if(locals.defibs.length) { %>
-      <h2 class="mt-4 mb-1">Quan hagis triat un desfibril·lador,
+      <h2 class="page-title">Quan hagis triat un desfibril·lador,
         fes-hi clic a sobre.
       </h2>
-      <ul class="defs-list">
+      <ul class="defs-list main-list">
         <% checkIfDefib(); %>
       </ul>
     <% }else { %>

@@ -1,5 +1,10 @@
 const feedbackPopup = document.getElementById("feedback-popup");
 
+/**
+ * 
+ * @param {string} msg - The message to show
+ * @param {string} type - Represents if the feedback is positive or negative. Allowed values: "feedback-msg" and "feedback-err"
+ */
 const showFBPopup = async (msg, type) => {
   feedbackPopup.classList.add("show");
   feedbackPopup.innerHTML = msg;

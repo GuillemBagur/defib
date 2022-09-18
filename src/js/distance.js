@@ -1,10 +1,10 @@
 const axios = require("axios");
-const { Console } = require("console");
 
 const { connectDB } = require(__dirname + "/miscelaneous-functions.js");
 
 const DesfibSchema = require(__dirname + "/../schemas/Desfib.js");
 
+// An object to parse the DB-data to the data that the API needs
 const apiVehiclesNames = {
   Ambulància: "drive",
   Cotxe: "drive",
@@ -21,7 +21,7 @@ const apiVehiclesNames = {
 const checkDistance = async (defib, toCoords) => {
   const fromCoords = { x: defib.X, y: defib.Y };
   const vehicles = JSON.parse(defib.VEHICLES_DISPONIBLES || "{}");
-  const threshold = 1000; // Assuming that Police'll come in less than 5 minutes
+  const threshold = 10000; // Assuming that Police'll come in less than 5 minutes (1000)
   const key = "3e707e48cc30488793f5f501b957dc5f"; // !Hide Key
   let travelModes = ["walk"]; // Walk is always a travel option
   // Then, filter the travelModes that the local has toggled on
@@ -59,17 +59,22 @@ const checkDistance = async (defib, toCoords) => {
 
 module.exports.checkDistance = checkDistance;
 
-const dbName = "patorrat";
+/**
+ * 
+ * @param {object} toCoords An object containing the lat and lon coords
+ * @returns All the defibs in range sorted by lowest distance
+ */
 const getDefibs = async (toCoords) => {
   const key = "e8ac7081bb57aa6b152e62b860eb7a72";
   const res = await axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${toCoords.x}&lon=${toCoords.y}&appid=${key}`);
   const location = res.data[0].name.toUpperCase();
+  const dbName = "patorrat";
   const con = connectDB(dbName);
   if(!con) {
     return false;
   }
 
-  let locatedDefibs = await DesfibSchema.find({NOM_MUNI: location}).limit(5);
+  let locatedDefibs = await DesfibSchema.find({NOM_MUNI: location}).limit(5); //! DISPONIBLE: true
   let allDefibs = [];
   for (let d of locatedDefibs) {
     const defib = d._doc;

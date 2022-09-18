@@ -1,3 +1,6 @@
+/* An array containing all the field info to render every input
+in the "edit-defib.ejs" view */
+
 module.exports.desfibParams = {
   metadata: {
     label: "Metadatos",

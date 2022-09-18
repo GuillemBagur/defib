@@ -11,9 +11,9 @@
 
     <form id="form" class="form" action="register" method="POST">
       <input id="validated-inputs" type="hidden" value="">
-      <label
-        ><input
-          class="form-input"
+      <label class="form__label">
+        <input
+          class="input form__input"
           type="text"
           placeholder="Nombre de usuario"
           name="username"
@@ -21,12 +21,12 @@
         /><span class="tick" data-name="username"
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
-        <span class="input-feedback" data-name="username"></span>
+        <span class="form__input-feedback" data-name="username"></span>
       </label>
 
-      <label>
+      <label class="form__label">
         <input
-          class="form-input"
+          class="input form__input"
           type="text"
           placeholder="ID del desfibr."
           name="device"
@@ -36,12 +36,12 @@
         /><span class="tick" data-name="device"
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
-        <span class="input-feedback" data-name="device"></span>
+        <span class="form__input-feedback" data-name="device"></span>
       </label>
 
-      <label>
+      <label class="form__label">
         <input
-          class="form-input"
+          class="input form__input"
           type="password"
           placeholder="Contraseña"
           name="pw"
@@ -49,12 +49,12 @@
         /><span class="tick" data-name="pw"
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
-        <span class="input-feedback" data-name="pw"></span>
+        <span class="form__input-feedback" data-name="pw"></span>
       </label>
 
-      <label>
+      <label class="form__label">
         <input
-          class="form-input"
+          class="input form__input"
           type="password"
           placeholder="Contraseña"
           name="repeatPw"
@@ -64,7 +64,7 @@
           ><iconify-icon class="icon" icon="charm:tick"></iconify-icon
         ></span>
         <span
-          class="input-feedback"
+          class="form__input-feedback"
           data-validate="false"
           data-name="repeatPw"
         ></span>

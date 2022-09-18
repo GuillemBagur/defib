@@ -1,4 +1,3 @@
-const { get } = require("http");
 const mongoose = require("mongoose");
 
 
@@ -6,6 +5,8 @@ const openPopup = (msg, isError) => {
   const bgClass = !isError ? "feedback-msg" : "feedback-err";
   document.innerHTML += `<span class="feedback-popup show ${bgClass}">${msg}</span>`;
 }
+
+module.exports.openPopup = openPopup;
 
 
 /**
@@ -26,30 +27,6 @@ const connectDB = (collection) => {
 
 
 module.exports.connectDB = connectDB;
-
-
-
-
-const removeIncident = (incidents, id) => {
-  if(!id) return incidents;
-  incidents.splice(incidents.findIndex(item => item.id === id), 1);
-  console.log(incidents);
-  return incidents;
-}
-
-module.exports.removeIncident = removeIncident;
-
-
-const includesIncident = (incidents, id) => {
-  for(let el of incidents) {
-    if(el.id === id) return true;
-  }
-
-  return false;
-}
-
-
-module.exports.includesIncident = includesIncident;
 
 
 
@@ -100,7 +77,9 @@ const checkReqArgs = (req, res, reqArgs) => {
 module.exports.checkReqArgs = checkReqArgs;
 
 
-
+/**
+ * @returns The current timestamp
+ */
 const getTimeStamp = () => {
   return Math.floor(Date.now() / 1000);
 }

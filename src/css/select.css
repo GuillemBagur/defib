@@ -1,0 +1,36 @@
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select-wrapper select::-ms-expand {
+  display: none;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  pointer-events: none;
+  content: "▼";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.select-wrapper select {
+  outline: 0;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  border: 0;
+  font-size: 1em;
+  font-family: "Quicksand", sans-serif;
+  border-radius: 5px;
+  position: relative;
+  padding: 0.6rem;
+  background-color: rgba(220, 220, 220, 1);
+}

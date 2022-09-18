@@ -1,4 +1,5 @@
 @import "app-styles.css";
+@import "main-list.css";
 
 nav {
   padding: 1rem 3rem;
@@ -12,75 +13,6 @@ h2 {
   text-align: left;
 }
 
-.wrapper {
-  width: 85%;
-  min-height: 80%;
-  display: block;
-  position: relative;
-  margin: auto;
-}
-
-.defs-list {
-  width: 100%;
-  display: block;
-  position: relative;
-  margin: auto;
-  height: 75%;
-  background-color: rgb(200, 200, 200);
-  border-radius: 10px;
-  list-style-type: none;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.defs-list .def {
-  padding: 0;
-  position: relative;
-  text-decoration: none;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.defs-list .def:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.def a {
-  display: block;
-  position: relative;
-  padding: 1rem;
-  text-decoration: inherit;
-}
-
-.def .def-title,
-.def .def-subtitle {
-  margin: 0;
-}
-
-.def .def-subtitle {
-  font-size: .8rem;
-  opacity: 0.6;
-}
-
-.def .temps-estimat {
-  display: block;
-  position: absolute;
-  right: 3rem;
-  top: 50%;
-  font-size: 1.3rem;
-  transform: translateY(-50%);
-}
-
-.def .temps-estimat .icon {
-  position: absolute;
-  font-size: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.def-data {
-  width: 80%;
-}
 
 .mt-4 {
   margin-top: 4rem;
@@ -115,7 +47,7 @@ h2 {
   transform: translate(-50%, -50%) scale(1.3);
 }
 
-.popup-title {
+.popup__title {
   text-align: center;
   margin-bottom: 1rem;
 }

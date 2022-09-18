@@ -4,16 +4,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Voluntarios</title>
+    <link rel="stylesheet" href="../css/volunteers.css" />
   </head>
   <body>
     <datalist id="cities">
       <option value="Ciutadella de Menorca">Ciutadella de Menorca</option>
       <option value="Ferreries">Ferreries</option>
       <option value="Es Mercadal">Es Mercadal</option>
-    </datalist> 
-    <input type="text" id="city-input" list="cities">
-    <button id="search-btn" class="btn main">Buscar</button>
-    <ul class="incidents-list" id="incidents-list"></ul>
+    </datalist>
+    <div class="wrapper">
+      <h2 class="page-title">
+        Aquí apareixeran les incidències que hi ha en aquests moments.
+      </h2>
+
+      <div class="search-controllers">
+        <div class="search-controllers__search-bar">
+          <input class="input search-controllers__input" type="text" id="city-input" list="cities" />
+          <button id="search-btn" class="btn main">Buscar</button>
+        </div>
+
+        <div class="select-wrapper search-controllers__select">
+          <select id="order-by">
+            <option value="least-volunteers">Menos voluntarios</option>
+            <option value="most-recent">Más recientes</option>
+            <option value="least-recent">Más antiguos</option>
+          </select>
+        </div>
+      </div>
+
+      <ul class="incidents main-list" id="incidents-list"></ul>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="../html-js/volunteers.js"></script>

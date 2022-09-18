@@ -1,0 +1,38 @@
+@import "app-styles.css";
+@import "main-list.css";
+
+.search-controllers {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-controllers__input {
+  margin-right: 0.5rem;
+}
+
+.search-controllers__input,
+.search-controllers__select{
+  width: 20rem;
+}
+
+.search-controllers__select{
+  margin-top: 0.5rem;
+}
+
+.search-controllers__search-bar {
+  display: block;
+}
+
+@media screen and (max-width: 640px) {
+  .search-controllers__search-bar {
+    display: flex;
+  }
+
+  .search-controllers__input {
+    flex-grow: 10;
+  }
+
+  .search-controllers__select{
+    width: 100%;
+  }
+}

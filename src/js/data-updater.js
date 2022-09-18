@@ -2,6 +2,11 @@ const { connectDB } = require("./miscelaneous-functions");
 
 const DesfibSchema = require(__dirname + "/../schemas/Desfib.js");
 
+/**
+ * Update the defib coords based on the "the_geom" field.
+ * This field contains a string that contains both coords in the format below:
+ * "POINT (lat, lon)"
+ */
 const updateCoords = async () => {
   console.log(1);
   connectDB("patorrat");

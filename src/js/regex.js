@@ -1,3 +1,4 @@
+// Regex to validate the data put into every input (the key represents the name of the input)
 const toValidate = {
   text: { regex: /./, error: "" },
   email: {
@@ -6,7 +7,7 @@ const toValidate = {
     error:
       "No es un correo electrónico válido. Debe contener un @ y, como mínimo, un punto.",
   },
-  telefon: {
+  telefon: { // phone num
     regex: /^\+(\d){2}(\s)?((\d){3})(\s)?((\d){2}(\s?)){3}$/,
     error:
       "Empieza por +[Código País] seguido del número de teléfono. Separa, si quieres, los grupos de números con espacios.",

@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const axios = require("axios");
+const CronJob = require("cron").CronJob;
 
 const { feedbackErrors, feedback } = require(__dirname + "/src/js/texts");
 
@@ -14,20 +15,14 @@ const DesfibSchema = require(__dirname + "/src/schemas/Desfib.js");
 const UserSchema = require(__dirname + "/src/schemas/User.js");
 
 const { getDefibs } = require(__dirname + "/src/js/distance.js");
-const { removeIncident } = require(__dirname +
-  "/src/js/miscelaneous-functions.js");
 
 const app = express();
 
 const http = require("http");
 const server = http.createServer(app);
-const {
-  includesIncident,
-  connectDB,
-} = require("./src/js/miscelaneous-functions");
+const { connectDB, getTimeStamp } = require("./src/js/miscelaneous-functions");
 const IncidentSchema = require(__dirname + "/src/schemas/Incident.js");
 const { Server } = require("socket.io");
-const { SocketAddress } = require("net");
 const io = new Server(server);
 
 const dbName = "patorrat";
@@ -50,14 +45,21 @@ app.use(bodyParser.urlencoded(true));
 app.use(bodyParser.json());
 
 app.get("/", async (req, res) => {
-  if (!req.query.lat || !req.query.lon) {
+  res.render("get-location");
+});
+
+app.post("/", async (req, res) => {
+  if (!req.body.lat || !req.body.lon) {
     res.render("get-location");
     return;
   }
 
-  const acc = +req.query.acc || 0;
+  console.log(req.body.lat);
 
-  const defibs = await getDefibs({ x: 39.998, y: 3.83916 }); //! Q putes
+  const acc = +req.body.acc || 0;
+
+  const defibs = await getDefibs({ x: +req.body.lat, y: +req.body.lon }); //! Q putes
+  console.log(defibs);
   let dbError = !defibs;
   res.render("index", {
     defibs: defibs,
@@ -109,7 +111,7 @@ io.on("connection", (socket) => {
       y: incident.y,
       city: city,
       volunteers: 0,
-      timestamp: funcs.getTimeStamp()
+      timestamp: funcs.getTimeStamp(),
     });
 
     IncidentSchema.find({ id: socket.id }, (err, docs) => {
@@ -122,7 +124,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("addVolunteer", async (id, volunteers) => {
-    volunteers ++;
+    volunteers++;
     const filter = { id: id };
     const update = { volunteers: volunteers };
     await IncidentSchema.findOneAndUpdate(filter, update);
@@ -136,6 +138,18 @@ io.on("connection", (socket) => {
     });
   });
 });
+
+const job = new CronJob(
+  "0 * * * * *",
+  () => {
+    const currentTimeStamp = getTimeStamp();
+    const minutesAgo = currentTimeStamp - 600; // We'll remove every incident that has been fired more than 10 minutes ago
+    IncidentSchema.deleteMany({ timestamp: { $lt: minutesAgo } }).exec();
+  },
+  null,
+  true,
+  "America/Los_Angeles"
+);
 
 app.get("/defib", async (req, res) => {
   const username = req.session.username;

@@ -13,25 +13,25 @@
     <h2>Primero, tienes que autenticarte</h2>
     <% } %>
     <form id="form" class="form" action="login" method="POST">
-      <label>
+      <label class="form__label">
         <input
-          class="form-input"
+          class="input form__input"
           type="text"
           placeholder="Nombre de usuario"
           name="username"
         />
-        <span class="input-feedback" data-name="username"></span>
+        <span class="form__input-feedback" data-name="username"></span>
       </label>
 
-      <label>
+      <label class="form__label">
         <input
-          class="form-input"
+          class="input form__input"
           data-validate="false"
           type="password"
           placeholder="Contraseña"
           name="pw"
         />
-        <span class="input-feedback" data-name="pw"></span>
+        <span class="form__input-feedback" data-name="pw"></span>
       </label>
 
       <button class="btn main" type="submit">Login</button>

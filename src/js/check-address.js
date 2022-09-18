@@ -1,14 +1,28 @@
+// Check if the address name and the coords given coincide
+
 const xCoordInput = document.getElementsByName("X")[0];
 const yCoordInput = document.getElementsByName("Y")[0];
 const addressInput = document.getElementsByName("ADRECA")[0];
+// The element to display the appropiate feedback to (if the coords coincide or if they don't)
 const addressFeedback = document.querySelector("[data-name=adreca]");
 
+/**
+ * 
+ * @param {number} c1 First side
+ * @param {number} c2 Second side
+ * @returns The result of a pitagoras theorem
+ */
 const pitagoras = (c1, c2) => {
   const h = Math.sqrt(Math.pow(c1, 2) + Math.pow(c2, 2));
   return h;
 };
 
-const maxDiam = 0.004;
+// The max error ratio allowed
+const maxDiam = 0.004; // Around 400m (parsed from coords to meters)
+
+/**
+ * @returns {bool} Depending if the given coords and the given address coincide or not
+ */
 const checkCoordsAdress = async () => {
   if (!xCoordInput.value.length) return;
   if (!yCoordInput.value.length) return;
