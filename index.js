@@ -54,12 +54,9 @@ app.post("/", async (req, res) => {
     return;
   }
 
-  console.log(req.body.lat);
-
   const acc = +req.body.acc || 0;
 
-  const defibs = await getDefibs({ x: +req.body.lat, y: +req.body.lon }); //! Q putes
-  console.log(defibs);
+  const defibs = await getDefibs({ x: +req.body.lat, y: +req.body.lon });
   let dbError = !defibs;
   res.render("index", {
     defibs: defibs,
@@ -102,7 +99,7 @@ io.on("connection", (socket) => {
     );
 
     const results = res.data.results[0];
-    const city = results.city;
+    const city = funcs.cityParser(results.city);
 
     incident.id = socket.id;
     const newIncident = new IncidentSchema({
@@ -113,6 +110,8 @@ io.on("connection", (socket) => {
       volunteers: 0,
       timestamp: funcs.getTimeStamp(),
     });
+
+    console.log(newIncident);
 
     IncidentSchema.find({ id: socket.id }, (err, docs) => {
       if (err) return;

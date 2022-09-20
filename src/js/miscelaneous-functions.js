@@ -78,10 +78,29 @@ module.exports.checkReqArgs = checkReqArgs;
 
 
 /**
- * @returns The current timestamp
+ * @returns The current UNIX timestamp
  */
 const getTimeStamp = () => {
   return Math.floor(Date.now() / 1000);
 }
 
 module.exports.getTimeStamp = getTimeStamp;
+
+
+
+/**
+ * Some cities are known by two different names (as my own town, Ciutadella).
+ * This func is to make sure that all those cities always get the same name. 
+ * @param {string} city - The city name to check if it has an ambiguous name or not
+ * @returns {string} - The standarized city name
+ */
+const cityParser = (city) => {
+  const allAmbiguousCities = {
+    "CIUTADELLA": "Ciutadella de Menorca"
+  };
+
+  // UpperCase to make sure it gets the correct key
+  return allAmbiguousCities[city.toUpperCase()] || city;
+}
+
+module.exports.cityParser = cityParser;

@@ -40,6 +40,7 @@ const sendPosition = ({ coords }) => {
     return;
   }
 
+  localStorage.setItem("position", JSON.stringify({lat: coords.latitude, lon: coords.longitude, acc: coords.accuracy}));
   post("/", {lat: coords.latitude, lon: coords.longitude, acc: coords.accuracy});
   //window.location.href = `/?lat=${coords.latitude}&lon=${coords.longitude}&acc=${coords.accuracy}`;
 };
