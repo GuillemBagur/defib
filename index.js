@@ -26,7 +26,6 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const dbName = "patorrat";
-const port = 3000;
 
 app.use(cookieParser());
 /* Provisional */
@@ -70,7 +69,7 @@ app.get("/volunteers", (req, res) => {
   res.render("volunteers");
 });
 
-server.listen(3000);
+server.listen(app.get("port"));
 
 const sendIncidents = (socket) => {
   IncidentSchema.find({}, (err, incidents) => {
