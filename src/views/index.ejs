@@ -9,14 +9,26 @@
 </head>
 
 <body>
+  <% const parseTime = (time) => {
+    const roundedTime = Math.round(time / 60) * 60;
+    const dateStr = new Date(roundedTime * 1000).toISOString();
+    const minutes = dateStr.substring(14, 16);
+
+    const minuteString = (minutes === 1) ? "minut" : "minutes";
+    const res = `${minutes} ${minuteString}`;
+
+    return res;
+  } %>
+
   <% const renderDefibs = (defibs) => {
-        for(let defib of defibs) { %>
+        for(let defib of defibs) {
+          const time = parseTime(defib.TIME) %>
   <li class="el main-list__el"><a href="tel:<%= defib.TEL %>">
       <div class="el__data">
         <h3 class="el__title"><%= defib.NOM %></h3>
         <h4 class="el__subtitle"><%= defib.ADRECA %></h4>
       </div>
-      <span class="el__append"><%= defib.TIME %>" <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
+      <span data-time="<%= defib.TIME %>" class="el__append"><%= time %> <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
     </a></li>
   <% }
     }

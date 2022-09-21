@@ -34,13 +34,8 @@ const renderIncidents = (socketIncidents) => {
                 <h3 class="el__title">${incident.x}, ${incident.y}</h3>
                 <h4 class="el__subtitle">${volunteerMessage}</h4>
               </div>
-              <span class="el__append">${incidentTime
-                .toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid" })
-                .split(":")
-                .slice(0, -1)
-                .join(
-                  ":"
-                )} <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
+              <span class="el__append">${new Date(incident.timestamp * 1000).toISOString().substring(11, 16)}
+                <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
             </a></li>
         `;
   }

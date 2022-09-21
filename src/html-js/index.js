@@ -9,7 +9,7 @@ const emitNewIncident = () => {
   const lat = params.get("lat");
   const lon = params.get("lon"); */
 
-  //! Since we use the POST method, we need to store the data in localStorage before we redirect the user
+  //* Since we use the POST method, we need to store the data in localStorage before we redirect the user
   const position = JSON.parse(localStorage.getItem("position") ?? "[]");
   localStorage.removeItem("position");
   const { lat, lon } = position;

@@ -38,6 +38,7 @@ app.use(
   })
 );
 
+app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));
 app.set("views", __dirname + "/src/views");
@@ -69,7 +70,7 @@ app.get("/volunteers", (req, res) => {
   res.render("volunteers");
 });
 
-server.listen(port);
+server.listen(3000);
 
 const sendIncidents = (socket) => {
   IncidentSchema.find({}, (err, incidents) => {
@@ -153,6 +154,7 @@ const job = new CronJob(
 app.get("/defib", async (req, res) => {
   const username = req.session.username;
   const id = req.session.desfId;
+  const queryId = `ObjectId("${id}")`;
   /* If user hasn't been authenticated correctly, redirect to login */
   if (!username || !id) {
     res.redirect("/login?redirected=true");
@@ -196,7 +198,7 @@ app.post("/defib", async (req, res) => {
   }
 
   connectDB(dbName);
-  await DesfibSchema.findOneAndUpdate(desfibData.id, desfibData, {
+  await DesfibSchema.findOneAndUpdate({_id: id}, desfibData, {
     upsert: true, // To append non-initialized fields
   });
 

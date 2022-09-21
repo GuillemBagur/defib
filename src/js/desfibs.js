@@ -19,7 +19,7 @@ module.exports.desfibParams = {
       ADRECA: { type: "text", labels: ["Adreça"] },
       NOM_MUNI: { type: "text", labels: ["Municipi"], required: true },
       INE_NUM: { type: "text", labels: ["Ine Municipi"] }, // Wtf q es
-      ILLA: { type: "text", labels: ["Illa"], required: true },
+      ILLA: { type: "text", labels: ["Illa"]},
       TELEFON: { type: "tel", labels: ["Telèfon"], required: true },
     },
   },

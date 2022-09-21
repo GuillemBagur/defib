@@ -21,7 +21,7 @@ const apiVehiclesNames = {
 const checkDistance = async (defib, toCoords) => {
   const fromCoords = { x: defib.X, y: defib.Y };
   const vehicles = JSON.parse(defib.VEHICLES_DISPONIBLES || "{}");
-  const threshold = 10000; // Assuming that Police'll come in less than 5 minutes (1000)
+  const threshold = 3540; // Assuming that Police'll come in less than 5 minutes (1000)
   const key = "3e707e48cc30488793f5f501b957dc5f"; // !Hide Key
   let travelModes = ["walk"]; // Walk is always a travel option
   // Then, filter the travelModes that the local has toggled on
@@ -74,7 +74,7 @@ const getDefibs = async (toCoords) => {
     return false;
   }
 
-  let locatedDefibs = await DesfibSchema.find({NOM_MUNI: location}).limit(5); //! DISPONIBLE: true
+  let locatedDefibs = await DesfibSchema.find({NOM_MUNI: location, DISPONIBLE: {$ne: false}}); //! Llevar límit
   let allDefibs = [];
   for (let d of locatedDefibs) {
     const defib = d._doc;

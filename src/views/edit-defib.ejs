@@ -30,7 +30,7 @@
                 console.log(err)} 
               }
               
-              const stylesClass = (inputData.type !="checkbox") ? "form-input" : "checkbox-input";
+              const stylesClass = (inputData.type !="checkbox") ? "input form__input" : "checkbox-input";
               const checked = (value && inputData.type === "checkbox") ? "checked" : "";
               const required = (inputData.required) ? "required" : ""; %>
               <label class="large-label"><%= label %>
