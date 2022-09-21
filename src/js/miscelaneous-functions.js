@@ -13,9 +13,9 @@ module.exports.openPopup = openPopup;
  * Connects with the main DB, and enters into the givern Mongo Collection
  * @param {String} collection
  */
-const connectDB = (collection) => {
+const connectDB = async (collection) => {
   try {
-    mongoose.connect(
+    await mongoose.connect(
       `mongodb+srv://guillem:test@cluster0.sqgy5bb.mongodb.net/${collection}`
     );
     return true;

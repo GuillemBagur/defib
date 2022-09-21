@@ -86,8 +86,8 @@ const autoSendIncidents = (socket, filter = {}) => {
   });
 };
 
-io.on("connection", (socket) => {
-  connectDB("patorrat");
+io.on("connection", async (socket) => {
+  await connectDB("patorrat");
   socket.on("get-incidents", (city) => {
     const filter = city ? { city: city } : {};
     autoSendIncidents(socket, filter);
@@ -161,7 +161,7 @@ app.get("/defib", async (req, res) => {
     return;
   }
 
-  const con = connectDB(dbName);
+  const con = await connectDB(dbName);
   /* Fetch the current data from DB to render it */
   const [data] = await DesfibSchema.find({ _id: id });
 
@@ -197,7 +197,7 @@ app.post("/defib", async (req, res) => {
     return;
   }
 
-  connectDB(dbName);
+  await connectDB(dbName);
   await DesfibSchema.findOneAndUpdate({_id: id}, desfibData, {
     upsert: true, // To append non-initialized fields
   });
@@ -228,7 +228,7 @@ app.post("/login", async (req, res) => {
 
   const username = req.body.username;
   const pw = funcs.hash(req.body.pw, "md5");
-  connectDB(dbName);
+  await connectDB(dbName);
 
   // Get first (it must be the only one) entry that appears
   const [query] = await UserSchema.find({ username: username, pw: pw });
@@ -268,7 +268,7 @@ app.post("/register", async (req, res) => {
     return;
   }
 
-  connectDB(dbName);
+  await connectDB(dbName);
   /* Check if already exists a user with that name */
   const previousUsersName = await UserSchema.find({ username: username });
 

@@ -9,7 +9,7 @@ const DesfibSchema = require(__dirname + "/../schemas/Desfib.js");
  */
 const updateCoords = async () => {
   console.log(1);
-  connectDB("patorrat");
+  await connectDB("patorrat");
   console.log(2);
   const allDefibs = await DesfibSchema.find();
   console.log(3);

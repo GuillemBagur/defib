@@ -69,7 +69,7 @@ const getDefibs = async (toCoords) => {
   const res = await axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${toCoords.x}&lon=${toCoords.y}&appid=${key}`);
   const location = res.data[0].name.toUpperCase();
   const dbName = "patorrat";
-  const con = connectDB(dbName);
+  const con = await connectDB(dbName);
   if(!con) {
     return false;
   }
