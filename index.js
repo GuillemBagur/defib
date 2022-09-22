@@ -38,7 +38,7 @@ app.use(
 );
 
 app.use(enforce.HTTPS());
-app.set("port", 3000);
+app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));
 app.set("views", __dirname + "/src/views");
