@@ -69,3 +69,14 @@ h2 {
   bottom: 1rem;
 }
 
+
+@media screen and (max-width: 500px) {
+  .popup .btn, .popup .btn-w {
+    text-align: center;
+    width: 100%;
+  }
+
+  .popup .btn-w {
+    margin-bottom: .5rem;
+  }
+}

@@ -37,12 +37,21 @@ app.use(
   })
 );
 
-app.set("port", process.env.PORT || 3000);
+const forceSsl = (req, res, next) => {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  return next();
+};
+
+app.use(forceSsl);
+app.set("port", 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));
 app.set("views", __dirname + "/src/views");
 app.use(bodyParser.urlencoded(true));
 app.use(bodyParser.json());
+
 
 app.get("/", async (req, res) => {
   res.render("get-location");
@@ -197,7 +206,7 @@ app.post("/defib", async (req, res) => {
   }
 
   await connectDB(dbName);
-  await DesfibSchema.findOneAndUpdate({_id: id}, desfibData, {
+  await DesfibSchema.findOneAndUpdate({ _id: id }, desfibData, {
     upsert: true, // To append non-initialized fields
   });
 

@@ -1,0 +1,222 @@
+<!-- SAMPLE DOCTYPE TO TEST CSS VALUES (AND AVOID USING REAL API QUERIES) -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/main-app.css" />
+  </head>
+  <body cz-shortcut-listen="true">
+    <div class="popup centered show">
+      <h3 class="popup__title">Avisar al 112?</h3>
+      <div class="btn-w">
+        <a class="btn main center" href="tel:+34 682 57 20 05">Sí, avisa</a>
+      </div>
+      <button onclick="hidePopup(this)" class="btn">Cancel·la</button>
+    </div>
+
+    <nav>
+      <a href="/defib"><img /></a>
+      <a class="btn main" href="tel:+34 682 57 20 05">Avisar al 112</a>
+    </nav>
+
+    <div id="wrapper" class="wrapper">
+      <h2 class="page-title">
+        Quan hagis triat un desfibril·lador, fes-hi clic a sobre.
+      </h2>
+      <ul class="defs-list main-list">
+        <li class="el main-list__el">
+          <a href="tel:971382762">
+            <div class="el__data">
+              <h3 class="el__title">CEIP Pere Casanovas</h3>
+              <h4 class="el__subtitle">Camí Vell, S/N</h4>
+            </div>
+            <span data-time="205" class="el__append"
+              >03' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971484455">
+            <div class="el__data">
+              <h3 class="el__title">Port de la Ciutadella (Antic)</h3>
+              <h4 class="el__subtitle">Moll Comercial, S/N</h4>
+            </div>
+            <span data-time="1195" class="el__append"
+              >20' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971484455">
+            <div class="el__data">
+              <h3 class="el__title">Port de Ciutadella</h3>
+              <h4 class="el__subtitle">C/ Moll Comercial, s/n</h4>
+            </div>
+            <span data-time="1199" class="el__append"
+              >20' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971480703">
+            <div class="el__data">
+              <h3 class="el__title">Pistes Municipals de Tennis</h3>
+              <h4 class="el__subtitle">Lleida</h4>
+            </div>
+            <span data-time="1509" class="el__append"
+              >25' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971480350">
+            <div class="el__data">
+              <h3 class="el__title">CAMP MUNICIPAL UD SAMI</h3>
+              <h4 class="el__subtitle">ZOLL</h4>
+            </div>
+            <span data-time="1589" class="el__append"
+              >26' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971480703">
+            <div class="el__data">
+              <h3 class="el__title">CAMP MUNICIPAL SON MARÇAL</h3>
+              <h4 class="el__subtitle">Des Ferrers, S/N</h4>
+            </div>
+            <span data-time="1632" class="el__append"
+              >27' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971380935">
+            <div class="el__data">
+              <h3 class="el__title">CAMP MUNICIPAL SANT ANTONI FB</h3>
+              <h4 class="el__subtitle">DELS INDUSTRIALS, S/N</h4>
+            </div>
+            <span data-time="1660" class="el__append"
+              >28' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971480703">
+            <div class="el__data">
+              <h3 class="el__title">Pavelló Municipal Ciutadella</h3>
+              <h4 class="el__subtitle">Camí Vell, S/n</h4>
+            </div>
+            <span data-time="1845" class="el__append"
+              >31' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971073093">
+            <div class="el__data">
+              <h3 class="el__title">Piscina Municipal Coberta</h3>
+              <h4 class="el__subtitle">Camí Vell, s/n</h4>
+            </div>
+            <span data-time="1871" class="el__append"
+              >31' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971480703">
+            <div class="el__data">
+              <h3 class="el__title">Piscina Municipal Descoberta</h3>
+              <h4 class="el__subtitle">Piscina Municipal Descoberta</h4>
+            </div>
+            <span data-time="1875" class="el__append"
+              >31' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971380166">
+            <div class="el__data">
+              <h3 class="el__title">IES Mª Àngels Cardona</h3>
+              <h4 class="el__subtitle">Ronda Balears, s/n</h4>
+            </div>
+            <span data-time="2006" class="el__append"
+              >33' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971480703">
+            <div class="el__data">
+              <h3 class="el__title">Pavelló Sant Joan</h3>
+              <h4 class="el__subtitle">Carretera Santanaria</h4>
+            </div>
+            <span data-time="2056" class="el__append"
+              >34' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:669355321">
+            <div class="el__data">
+              <h3 class="el__title">Apartamentos Talayot / Recepción</h3>
+              <h4 class="el__subtitle">Avda Simón de Olivar S/N</h4>
+            </div>
+            <span data-time="2797" class="el__append"
+              >47' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+
+        <li class="el main-list__el">
+          <a href="tel:971388705">
+            <div class="el__data">
+              <h3 class="el__title">Aqua-Center</h3>
+              <h4 class="el__subtitle">Av los Delfines, s/n</h4>
+            </div>
+            <span data-time="3256" class="el__append"
+              >54' <iconify-icon class="icon" icon="carbon:timer"></iconify-icon
+            ></span>
+          </a>
+        </li>
+      </ul>
+
+      <span id="feedback-popup" class="feedback-popup"
+        >La localització no és gaire precisa</span
+      >
+
+      <script src="../html-js/functions.js"></script>
+      <script src="../html-js/feedback-popup.js"></script>
+
+      <script>
+        showFBPopup("La localització no és gaire precisa", "feedback-err");
+      </script>
+    </div>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+
+    <script>
+      const hidePopup = (el) => {
+        const parent = el.parentNode;
+        parent.classList.remove("show");
+      };
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../html-js/index.js"></script>
+  </body>
+</html>

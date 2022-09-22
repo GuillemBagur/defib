@@ -64,6 +64,33 @@
   width: 80%;
 }
 
-.incidents a, .incidents h4, .incidents h5, .incidents span {
-    pointer-events: none;
+.incidents a,
+.incidents h4,
+.incidents h5,
+.incidents span {
+  pointer-events: none;
+}
+
+
+@media screen and (max-width: 500px) {
+  .el a {
+    padding: .8rem;
   }
+
+  .el__append {
+    right: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .el__append .icon {
+    font-size: 1.3rem;
+  }
+
+  .el__data {
+    width: 75%;
+  }
+
+  .el__title {
+    font-size: 1rem;
+  }
+}

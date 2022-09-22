@@ -14,8 +14,7 @@
     const dateStr = new Date(roundedTime * 1000).toISOString();
     const minutes = dateStr.substring(14, 16);
 
-    const minuteString = (minutes === 1) ? "minut" : "minutes";
-    const res = `${minutes} ${minuteString}`;
+    const res = `${minutes}'`;
 
     return res;
   } %>
