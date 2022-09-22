@@ -4,7 +4,6 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const axios = require("axios");
 const CronJob = require("cron").CronJob;
-const enforce = require('express-sslify');
 
 const { feedbackErrors, feedback } = require(__dirname + "/src/js/texts");
 
@@ -18,6 +17,7 @@ const UserSchema = require(__dirname + "/src/schemas/User.js");
 const { getDefibs } = require(__dirname + "/src/js/distance.js");
 
 const app = express();
+
 const http = require("http");
 const server = http.createServer(app);
 const { connectDB, getTimeStamp } = require("./src/js/miscelaneous-functions");
@@ -26,6 +26,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const dbName = "patorrat";
+const port = 3000;
 
 app.use(cookieParser());
 /* Provisional */
@@ -37,14 +38,12 @@ app.use(
   })
 );
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));
 app.set("views", __dirname + "/src/views");
 app.use(bodyParser.urlencoded(true));
 app.use(bodyParser.json());
-
 
 app.get("/", async (req, res) => {
   res.render("get-location");
@@ -71,7 +70,7 @@ app.get("/volunteers", (req, res) => {
   res.render("volunteers");
 });
 
-server.listen(app.get("port"));
+server.listen(3000);
 
 const sendIncidents = (socket) => {
   IncidentSchema.find({}, (err, incidents) => {
@@ -199,7 +198,7 @@ app.post("/defib", async (req, res) => {
   }
 
   await connectDB(dbName);
-  await DesfibSchema.findOneAndUpdate({ _id: id }, desfibData, {
+  await DesfibSchema.findOneAndUpdate({_id: id}, desfibData, {
     upsert: true, // To append non-initialized fields
   });
 
