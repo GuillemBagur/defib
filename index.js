@@ -37,14 +37,16 @@ app.use(
   })
 );
 
-const forceSsl = (req, res, next) => {
-  if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(['https://', req.get('Host'), req.url].join(''));
-  }
-  return next();
-};
+if(process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    else
+      next()
+  })
+}
 
-app.use(forceSsl);
+
 app.set("port", 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));
