@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const axios = require("axios");
 const CronJob = require("cron").CronJob;
+const enforce = require('express-sslify');
 
 const { feedbackErrors, feedback } = require(__dirname + "/src/js/texts");
 
@@ -17,7 +18,6 @@ const UserSchema = require(__dirname + "/src/schemas/User.js");
 const { getDefibs } = require(__dirname + "/src/js/distance.js");
 
 const app = express();
-
 const http = require("http");
 const server = http.createServer(app);
 const { connectDB, getTimeStamp } = require("./src/js/miscelaneous-functions");
@@ -37,16 +37,7 @@ app.use(
   })
 );
 
-/* if(process.env.NODE_ENV === 'production') {
-  app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
-    else
-      next()
-  })
-} */
-
-
+app.use(enforce.HTTPS());
 app.set("port", 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));
