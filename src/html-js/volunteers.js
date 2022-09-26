@@ -6,6 +6,15 @@ const cityInput = document.getElementById("city-input");
 let city = localStorage.getItem("volunteer-city");
 let incidents;
 
+const notifyNewAdvice = async (coords, time) => {
+  const notifPerm = await Notification.requestPermission();
+  if (notifPerm !== "granted") return;
+  const notif = new Notification("Nuevo incidente", {
+    body: `Coordenadas ${coords.latitude},${coords.longitude}`,
+    data: { coords: coords, time: time },
+  });
+};
+
 /**
  * Receives all the incidents from the server and renders them into the view
  * @param {array} socketIncidents - The array of incidents sent by the server via websockets
@@ -21,6 +30,12 @@ const renderIncidents = (socketIncidents) => {
   };
 
   for (let incident of filteredIncidents) {
+    notifyNewAdvice({
+      latitude: incident.x,
+      longitude: incident.y,
+      time: incident.time,
+    });
+    
     const volunteerMessage =
       volunteerMessages[incident.volunteers] ??
       `Ja hi estan anant ${incident.volunteers} voluntaris.`;
@@ -34,7 +49,9 @@ const renderIncidents = (socketIncidents) => {
                 <h3 class="el__title">${incident.x}, ${incident.y}</h3>
                 <h4 class="el__subtitle">${volunteerMessage}</h4>
               </div>
-              <span class="el__append">${new Date(incident.timestamp * 1000).toISOString().substring(11, 16)}
+              <span class="el__append">${new Date(incident.timestamp * 1000)
+                .toISOString()
+                .substring(11, 16)}
                 <iconify-icon class="icon" icon="carbon:timer"></iconify-icon></span>
             </a></li>
         `;
@@ -72,7 +89,7 @@ searchBtn.addEventListener("click", () => {
 /**
  * Redirects user to a Google Map that shows the fastest route to
  * reach to the incident
- * 
+ *
  * @param {object} from - Current client coords
  * @param {object} to - The coords of the incident
  */
@@ -84,7 +101,6 @@ const openGoogleMaps = (from, to) => {
   );
   newTab.focus();
 };
-
 
 /**
  * Adds a new volunteer to the clicked incident
@@ -106,7 +122,7 @@ const addVolunteer = (e) => {
   } else {
     alert("Geolocation is not supported by this browser.");
   }
-}
+};
 
 incidentsList.addEventListener("click", addVolunteer);
 
@@ -132,5 +148,5 @@ const orderFuncs = {
 orderBy.addEventListener("change", () => {
   const filter = orderBy.value;
   const sortedIncidents = orderFuncs[filter](incidents);
-  renderIncidents(sortedIncidents)
+  renderIncidents(sortedIncidents);
 });

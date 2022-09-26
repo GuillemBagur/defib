@@ -5,10 +5,6 @@ const session = require("express-session");
 require("dotenv").config();
 const axios = require("axios");
 const CronJob = require("cron").CronJob;
-<<<<<<< HEAD
-/* const enforce = require('express-sslify'); */
-=======
->>>>>>> b605f2d8c4cbec1e46bbf235b0ccc16d92efbcea
 
 const { feedbackErrors, feedback } = require(__dirname + "/src/js/texts");
 
@@ -43,10 +39,6 @@ app.use(
   })
 );
 
-<<<<<<< HEAD
-/* app.use(enforce.HTTPS({ trustProtoHeader: true })) */
-=======
->>>>>>> b605f2d8c4cbec1e46bbf235b0ccc16d92efbcea
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));

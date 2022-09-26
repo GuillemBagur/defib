@@ -15,7 +15,6 @@ module.exports.openPopup = openPopup;
  */
 const connectDB = async (collection) => {
   try {
-    console.log(process.env.MONGO_DB_URI);
     await mongoose.connect(
       `${process.env.MONGO_DB_URI}/${collection}`
     );
