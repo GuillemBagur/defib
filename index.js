@@ -113,13 +113,13 @@ io.on("connection", async (socket) => {
       timestamp: funcs.getTimeStamp(),
     });
 
-    console.log(newIncident);
 
     IncidentSchema.find({ id: socket.id }, (err, docs) => {
       if (err) return;
       if (!docs.length)
         newIncident.save(() => {
           sendIncidents(socket);
+          socket.broadcast.emit("notifIncident", incident);
         });
     });
   });

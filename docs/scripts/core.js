@@ -249,7 +249,6 @@ function addAnchor() {
  * @param {string} value
  */
 function copy(value) {
-    console.log(value);
     const el = document.createElement('textarea');
 
     el.value = value;

@@ -59,6 +59,25 @@ const checkDistance = async (defib, toCoords) => {
 
 module.exports.checkDistance = checkDistance;
 
+
+
+const genEstablishmentSchedule = (defib) => {
+  let opening = new Date();
+  opening.setHours(defib.HORARI_INICI.split(":")[0]);
+  opening.setMinutes(defib.HORARI_INICI.split(":")[1]);
+
+  let closing = new Date();
+  closing.setHours(defib.HORARI_FINAL.split(":")[0]);
+  closing.setMinutes(defib.HORARI_FINAL.split(":")[1]);
+  const openingTimes = {
+    openingTime: opening,
+    closingTime: closing
+  };
+
+  return openingTimes;
+}
+
+
 /**
  * 
  * @param {object} toCoords An object containing the lat and lon coords
@@ -74,9 +93,18 @@ const getDefibs = async (toCoords) => {
     return false;
   }
 
-  let locatedDefibs = await DesfibSchema.find({NOM_MUNI: location, DISPONIBLE: {$ne: false}}); //! Llevar límit
+
+  const now = new Date();
+  const currentTime = (now.toISOString().substring(8, 11));
+  const locatedDefibs = await DesfibSchema.find({NOM_MUNI: location, DISPONIBLE: {$ne: false}});
+  const timeTableFilteredDefibs = locatedDefibs.filter(defib => {
+    if(!defib.HORARI_INICI || !defib.HORARI_FINAL) return defib;
+    const openingTimes = genEstablishmentSchedule(defib);
+    if(now > openingTimes.openingTime && now < openingTimes.closingTime) return defib;
+  });
+
   let allDefibs = [];
-  for (let d of locatedDefibs) {
+  for (let d of timeTableFilteredDefibs) {
     const defib = d._doc;
     const fastestTravelModeDefib = await checkDistance(defib, toCoords);
     if(!fastestTravelModeDefib) continue;

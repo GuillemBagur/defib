@@ -12,6 +12,7 @@ const notifyNewAdvice = async (coords, time) => {
   const notif = new Notification("Nuevo incidente", {
     body: `Coordenadas ${coords.latitude},${coords.longitude}`,
     data: { coords: coords, time: time },
+    vibrate: true
   });
 };
 
@@ -30,12 +31,6 @@ const renderIncidents = (socketIncidents) => {
   };
 
   for (let incident of filteredIncidents) {
-    notifyNewAdvice({
-      latitude: incident.x,
-      longitude: incident.y,
-      time: incident.time,
-    });
-    
     const volunteerMessage =
       volunteerMessages[incident.volunteers] ??
       `Ja hi estan anant ${incident.volunteers} voluntaris.`;
@@ -150,3 +145,13 @@ orderBy.addEventListener("change", () => {
   const sortedIncidents = orderFuncs[filter](incidents);
   renderIncidents(sortedIncidents);
 });
+
+
+socket.on("notifIncident", incident => {
+  console.log("received");
+  notifyNewAdvice({
+    latitude: incident.x,
+    longitude: incident.y,
+    time: incident.time,
+  });
+})
