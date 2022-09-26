@@ -21,9 +21,12 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+<<<<<<< HEAD
     "https-localhost": "^4.7.1",
     "ink-docstrap": "^1.3.2",
     "jsdoc": "^3.6.11",
+=======
+>>>>>>> b605f2d8c4cbec1e46bbf235b0ccc16d92efbcea
     "mongoose": "^6.5.4",
     "node": "^16.17.0",
     "nodemon": "^2.0.20",
