@@ -17,10 +17,22 @@
   position: relative;
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.1);
+  transition: all .3s;
 }
 
 .main-list .main-list__el:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.2);
+  transition: all .3s;
+}
+
+.main-list .main-list__el:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+  transition: all .3s;
+}
+
+.main-list .main-list__el:nth-child(even):hover {
+  background-color: rgba(0, 0, 0, 0.35);
+  transition: all .3s;
 }
 
 .main-list li {

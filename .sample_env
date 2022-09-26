@@ -1,0 +1,5 @@
+MONGO_DB_URI=mongodb production DB (URL endpoint)
+MONGO_DB_URI_TEST=mongodb test DB (URL endpoint)
+
+GEOAPIFY_API_KEY=geoapify api key
+OPENWEATHERMAP_API_KEY=openweather api key

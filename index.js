@@ -2,9 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+require("dotenv").config();
 const axios = require("axios");
 const CronJob = require("cron").CronJob;
-const enforce = require('express-sslify');
+/* const enforce = require('express-sslify'); */
 
 const { feedbackErrors, feedback } = require(__dirname + "/src/js/texts");
 
@@ -37,7 +38,7 @@ app.use(
   })
 );
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+/* app.use(enforce.HTTPS({ trustProtoHeader: true })) */
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/src"));
@@ -95,7 +96,7 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("newIncident", async (incident) => {
-    const key = "3e707e48cc30488793f5f501b957dc5f";
+    const key = process.env.GEOAPIFY_API_KEY;
     const res = await axios(
       `https://api.geoapify.com/v1/geocode/reverse?lat=${incident.x}&lon=${incident.y}&format=json&apiKey=${key}`
     );
@@ -133,10 +134,10 @@ io.on("connection", async (socket) => {
     socket.broadcast.emit("volunteerComing");
   });
 
-  socket.on("disconnect", () => {
-    IncidentSchema.deleteOne({ id: socket.id }).then(() => {
+  socket.on("disconnect", async () => {
+    await IncidentSchema.deleteOne({ id: socket.id }).then(() => {
       sendIncidents(socket);
-    });
+    }).catch(() => {});
   });
 });
 
@@ -145,7 +146,7 @@ const job = new CronJob(
   () => {
     const currentTimeStamp = getTimeStamp();
     const minutesAgo = currentTimeStamp - 600; // We'll remove every incident that has been fired more than 10 minutes ago
-    IncidentSchema.deleteMany({ timestamp: { $lt: minutesAgo } }).exec();
+    IncidentSchema.deleteMany({ timestamp: { $lt: minutesAgo } }).exec().catch(() => {});
   },
   null,
   true,

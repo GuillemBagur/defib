@@ -31,7 +31,7 @@ const checkCoordsAdress = async () => {
   const coords = { x: xCoordInput.value, y: yCoordInput.value };
   const address = addressInput.value;
 
-  const key = "3e707e48cc30488793f5f501b957dc5f";
+  const key = process.env.GEOAPIFY_API_KEY;
 
   const res = await fetch(
     `https://api.geoapify.com/v1/geocode/search?text=${address}&format=json&apiKey=${key}`

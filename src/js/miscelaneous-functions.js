@@ -15,8 +15,9 @@ module.exports.openPopup = openPopup;
  */
 const connectDB = async (collection) => {
   try {
+    console.log(process.env.MONGO_DB_URI);
     await mongoose.connect(
-      `mongodb+srv://guillem:test@cluster0.sqgy5bb.mongodb.net/${collection}`
+      `${process.env.MONGO_DB_URI}/${collection}`
     );
     return true;
   } catch (err) {
