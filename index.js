@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
+const session = require("cookie-session");
 require("dotenv").config();
 const axios = require("axios");
 const CronJob = require("cron").CronJob;
