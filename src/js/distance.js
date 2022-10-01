@@ -21,7 +21,7 @@ const apiVehiclesNames = {
 const checkDistance = async (defib, toCoords) => {
   const fromCoords = { x: defib.X, y: defib.Y };
   const vehicles = JSON.parse(defib.VEHICLES_DISPONIBLES || "{}");
-  const threshold = 3540; // Assuming that Police'll come in less than 5 minutes (1000)
+  const threshold = 900; // Assuming that Police'll come in less than 15 minutes (900)
   const key = process.env.GEOAPIFY_API_KEY;
   let travelModes = ["walk"]; // Walk is always a travel option
   // Then, filter the travelModes that the local has toggled on
@@ -85,6 +85,8 @@ const genEstablishmentSchedule = (defib) => {
  */
 const getDefibs = async (toCoords) => {
   const key = process.env.OPENWEATHERMAP_API_KEY;
+  /* toCoords.x = 39.98737668489519;
+  toCoords.y = 4.093589708095359; */
   const res = await axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${toCoords.x}&lon=${toCoords.y}&appid=${key}`);
   const location = res.data[0].name.toUpperCase();
   const dbName = "patorrat";

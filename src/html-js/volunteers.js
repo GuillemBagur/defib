@@ -74,6 +74,7 @@ const getCityOnLoad = () => {
 };
 
 getCityOnLoad();
+Notification.requestPermission();
 
 searchBtn.addEventListener("click", () => {
   const city = cityInput.value;

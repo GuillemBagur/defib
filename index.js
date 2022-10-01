@@ -27,7 +27,6 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const dbName = "patorrat";
-const port = 3000;
 
 app.use(cookieParser());
 /* Provisional */
