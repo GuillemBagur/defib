@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const session = require("cookie-session");
+const session = require("express-session");
 require("dotenv").config();
 const axios = require("axios");
 const CronJob = require("cron").CronJob;
@@ -94,13 +94,14 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("newIncident", async (incident) => {
-    const key = process.env.GEOAPIFY_API_KEY;
+    const key = process.env.OPENWEATHERMAP_API_KEY;
+    console.log(`http://api.openweathermap.org/geo/1.0/reverse?lat=${incident.x}&lon=${incident.y}&appid=${key}`);
     const res = await axios(
-      `https://api.geoapify.com/v1/geocode/reverse?lat=${incident.x}&lon=${incident.y}&format=json&apiKey=${key}`
+      `http://api.openweathermap.org/geo/1.0/reverse?lat=${incident.x}&lon=${incident.y}&appid=${key}`
     );
 
-    const results = res.data.results[0];
-    const city = funcs.cityParser(results.city);
+    const results = res.data[0];
+    const city = funcs.cityParser(results.name);
 
     incident.id = socket.id;
     const newIncident = new IncidentSchema({
@@ -181,7 +182,6 @@ app.post("/defib", async (req, res) => {
   desfibData.DISPONIBLE = desfibData.DISPONIBLE !== undefined ? true : false;
   // Check if those params come from the form sent (by measuring the length is enough)
   if (desfibData.length !== desfibs.length) return;
-
   // Check all data is validated
   for (let key in desfibData) {
     const data = desfibData[key];

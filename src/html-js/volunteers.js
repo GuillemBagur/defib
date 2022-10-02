@@ -23,7 +23,7 @@ const notifyNewAdvice = async (coords, time) => {
 const renderIncidents = (socketIncidents) => {
   incidents = socketIncidents; // Give that to the global var incidents
   city = cityInput.value;
-  const filteredIncidents = incidents.filter((el) => el.city === city);
+  const filteredIncidents = (city.length) ? incidents.filter((el) => el.city === city) : incidents;
   incidentsList.innerHTML = "";
   const volunteerMessages = {
     0: "No hi ha cap voluntari anant-hi.",

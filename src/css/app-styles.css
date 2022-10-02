@@ -54,7 +54,7 @@ a {
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(-45deg, #ff0000 -21%, #0400ff 100%);
+  background: linear-gradient(-45deg, #00ff8c -21%, #FFF714 100%);
   transform: translateY(1rem) scale(0.95);
   filter: blur(32px);
   opacity: var(0.7);
@@ -73,8 +73,8 @@ a {
 }
 
 .btn.main {
-  color: white;
-  background-image: linear-gradient(45deg, blue, red);
+  color: #1a1a1a;
+  background-image: linear-gradient(45deg, #FFF714, #00FF8C);
 }
 
 .button-back {
@@ -171,7 +171,7 @@ a {
   display: flex;
   justify-content: center;
   width: 100%;
-  background-image: linear-gradient(45deg, blue, red);
+  background-image: linear-gradient(45deg, #FFF714, #00FF8C);
   border-radius: 5px;
   margin-bottom: 2rem;
   padding: 2px;
@@ -258,7 +258,7 @@ a {
 }
 
 .form__input-feedback {
-  color: red;
+  color: #00FF8C;
 }
 
 .form .checkbox-input {

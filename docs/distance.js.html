@@ -68,7 +68,7 @@ module.exports.checkDistance = checkDistance;
  */
 const getDefibs = async (toCoords) => {
   const key = process.env.OPENWEATHERMAP_API_KEY;
-  const res = await axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${toCoords.x}&amp;lon=${toCoords.y}&amp;appid=${key}`);
+  const res = await axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${toCoords.x}&lon=${toCoords.y}&appid=${key}`);
   const location = res.data[0].name.toUpperCase();
   const dbName = "patorrat";
   const con = await connectDB(dbName);
