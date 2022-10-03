@@ -1,5 +1,5 @@
 <h1>Defib</h1>
-
+<span><img src="https://img.shields.io/badge/STATUS-ON%20DEVELOPMENT-yellow"></span> <span><img src="https://img.shields.io/badge/LICENSE-MIT-green"></span>
 <h2>Description</h2>
 Defib is an opensource webapp that can help to reduce heart attack’s mortality index. When someone suffers a cardiac arrest on the street, people always call emergency services while, perhaps, there’s a nearby public institution that owns a defibrillator. So, Defib’s main functionality is to find defibrillators near the incident (and gives the user the opportunity to contact those establishments). IMPORTANT: all of this process must be executed once called the emergency services.
 
@@ -30,7 +30,7 @@ When a user enters in https://defib.onrender.com/volunteers, the server renders 
 When the user clicks on an incident, the page will open a Google Maps link with the fastest route to reach there, using the “openGoogleMaps” function. Then, the client will fire a socket event to the server notifying it that someone is going to that incident. The server will store that data into de MongoDB. After these changes, the server will repeat the process to offer to the clients the most updated info.
 
 
-<h2>Corporative informatioin</h2>
+<h2>Corporative information</h2>
 The title of the project is Defib. It’s an abbreviation of defibrillator, a word that I think it’s very difficult to pronounce.
 
 The colors:
