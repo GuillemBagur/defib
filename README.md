@@ -39,10 +39,14 @@ Light green (#00FF8C): this color is usually associated with hope and calm. I th
 Yellow (#FFF714): I chose this color because I think it combines perfectly with the green I used. This color combination is usually used by Feid, a singer that I like and sometimes I listened to while creating the app.
 
 
-<h2>how to access to the webapp</h2>
+<h2>How to access to the webapp</h2>
 We have deployed a test version in Render.
 
 To use the test version of the app, you must visit https://defib.onrender.com/. Maybe, you’ll have to wait around 10 seconds, to let the server run the app (those are Render politics for free tiers). Then, it’ll work fine. Only one thing, the current version is only available in catalan, so maybe you’ll have to turn on the translator.
+
+
+<h2>App Explanation</h2>
+
 
 
 <h2>How to clone and upgrade the project</h2>
