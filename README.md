@@ -116,6 +116,7 @@ If you want to create one of the tasks above, please, contact me. Before publish
 
 
 <h2>Developers</h2>
+The original idea is given by Oriol Masip.
 At the moment, all of this work has been done by Guillem Bagur (https://github.com/GuillemBagur/).
 
 Do you want to collaborate? Contact me!
