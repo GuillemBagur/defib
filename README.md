@@ -42,7 +42,7 @@ Yellow (#FFF714): I chose this color because I think it combines perfectly with 
 <h2>How to access to the webapp</h2>
 We have deployed a test version in Render.
 
-To use the test version of the app, you must visit https://defib.onrender.com/. Maybe, you’ll have to wait around 10 seconds, to let the server run the app (those are Render politics for free tiers). Then, it’ll work fine. Only one thing, the current version is only available in catalan, so maybe you’ll have to turn on the translator.
+To use the test version of the app, you may visit https://defib.onrender.com/. Maybe, you’ll have to wait around 10 seconds, to let the server run the app (those are Render politics for free tiers). Then, it’ll work fine. Only one thing, the current version is only available in catalan, so maybe you’ll have to turn on the translator.
 
 
 <h2>App Explanation</h2>
