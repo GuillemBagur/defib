@@ -59,7 +59,7 @@ To use the test version of the app, you may visit https://defib.onrender.com/. M
   <img src="https://raw.githubusercontent.com/GuillemBagur/GuillemBagur/main/pat-imgs/main.png">
 
   <caption>
-    |1) Click to call 112 (European emergency phone number). |2) Cancel (to hide the popup). You can click it if you want to look over the app. If it's an actual emergency, please call first to 112. |3) Found nearby defibrillator. By clicking on any one (the first one is always the nearest so, in case of emergency, please click it) you'll be calling to their phone number, to let them know about the incident. |4) Estimated time to arrive (from the establishment -the defibrillator owner- to the incident). |5) Establishment's name. |6) Establishment's address.
+    1) Click to call 112 (European emergency phone number).<br />2) Cancel (to hide the popup). You can click it if you want to look over the app. If it's an actual emergency, please call first to 112.<br />3) Found nearby defibrillator. By clicking on any one (the first one is always the nearest so, in case of emergency, please click it) you'll be calling to their phone number, to let them know about the incident.<br />4) Estimated time to arrive (from the establishment -the defibrillator owner- to the incident).<br />5) Establishment's name.<br />6) Establishment's address.
     </caption>
  </figure>
  
@@ -68,7 +68,7 @@ To use the test version of the app, you may visit https://defib.onrender.com/. M
   <img src="https://raw.githubusercontent.com/GuillemBagur/GuillemBagur/main/pat-imgs/volunteers.png">
 
   <caption>
-    |1) Found incident. By clicking there, it'll open a Google Maps with the fastest route to reach there. |2) Time it ocurred. |3) Exact coordinates. |4) The number of volunteers that are already going to help (it counts the number of times that different people has clicked that incident).
+    1) Found incident. By clicking there, it'll open a Google Maps with the fastest route to reach there.<br />2) Time it ocurred.<br />3) Exact coordinates.<br />4) The number of volunteers that are already going to help (it counts the number of times that different people has clicked that incident).
     </caption>
  </figure>
 
@@ -86,32 +86,32 @@ Inside the repo, you’ll find a folder called “docs”. There, you have all t
 For the app to work, you must create an “.env” file. You can change the name of the “.sample_env” to “.env”, and then, create an account in every service and paste the respective keys there. Then, duplicate the sample database and deploy it on MongoDB Atlas. Finally, paste the link of the DB into the “.env” file.
 
 <h3>Do not remove:</h3>
-.env (you must create it first).
-.gitignore
-package-lock.json
-package.json
+.env (you must create it first).<br />
+.gitignore<br />
+package-lock.json<br />
+package.json<br />
 
 <h3>Environment files (optional files):</h3>
-.clocignore: a list of directories that cloc (a terminal tool for counting lines of code) must ignore.
-colors.txt: contains the hex of both colors: green and yellow.
-jsdoc.json: the configuration of the JSDoc tool (a tool for generating comment-based documentation automatically).
+.clocignore: a list of directories that cloc (a terminal tool for counting lines of code) must ignore.<br />
+colors.txt: contains the hex of both colors: green and yellow.<br />
+jsdoc.json: the configuration of the JSDoc tool (a tool for generating comment-based documentation automatically).<br />
 
 <h3>App files:</h3>
-index.js: the server
-src
-css: a folder that contains all the css files.
-html-js: a folder that contains all the client-side js files.
-js: a folder that contains all the server-side js files.
-schemas: a folder that contains all the MongoDB schemas.
-views: a folder that contains all ejs templates.
-
+index.js: the server<br />
+src<br />
+css: a folder that contains all the css files.<br />
+html-js: a folder that contains all the client-side js files.<br />
+js: a folder that contains all the server-side js files.<br />
+schemas: a folder that contains all the MongoDB schemas.<br />
+views: a folder that contains all ejs templates.<br />
+<br />
 IMPORTANT: sometimes, you’ll find some server-side js functions are called from the client side (or vice versa).
-
+<br />
 
 <h3>Tasks to do:</h3>
-Our own routing API: currently, we’re using the Geoapify one. For more info, check the technical explanation section).
-Our own reverse geocoding API: currently, we’re using the OpenWeatherMap one. For more info, check the technical explanation section).
-
+Our own routing API: currently, we’re using the Geoapify one. For more info, check the technical explanation section).<br />
+Our own reverse geocoding API: currently, we’re using the OpenWeatherMap one. For more info, check the technical explanation section).<br />
+<br />
 If you want to create one of the tasks above, please, contact me. Before publishing any content of this project, please read the license.
 
 
