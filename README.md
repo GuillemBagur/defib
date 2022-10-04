@@ -83,7 +83,7 @@ gh repo clone GuillemBagur/patorrat
 Inside the repo, you’ll find a folder called “docs”. There, you have all the explanations of every function. It has been generated automatically using JSDoc so, any doubt you may have, please contact me.
 
 <h3>Setup:</h3>
-For the app to work, you must create an “.env” file. You can change the name of the “.sample_env” to “.env”, and then, create an account in every service and paste the respective keys there. Then, duplicate the sample database and deploy it on MongoDB Atlas. Finally, paste the link of the DB into the “.env” file.
+For the app to work, you must create an “.env” file. You can change the name of the “.sample_env” to “.env”, and then, create an account in every service and paste the respective keys there. Then, duplicate the sample database (you'll find the defibs database in the "data" folder) and deploy it on MongoDB Atlas. Finally, paste the link of the DB into the “.env” file.
 
 <h3>Do not remove:</h3>
 .env (you must create it first).<br />
