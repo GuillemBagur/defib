@@ -46,6 +46,31 @@ To use the test version of the app, you must visit https://defib.onrender.com/. 
 
 
 <h2>App Explanation</h2>
+<h3>Main app (splash screen)</h3>
+<figure>
+  <img src="https://raw.githubusercontent.com/GuillemBagur/GuillemBagur/main/pat-imgs/loading-main.png">
+  <caption>
+    This is what you see when you visit the webapp. It usually lasts by 5-15 secons, depending the city. In the final version, it'll be faster.
+  </caption>
+</figure>
+
+<h3>Main app</h3>
+  <figure>
+  <img src="https://raw.githubusercontent.com/GuillemBagur/GuillemBagur/main/pat-imgs/main.png">
+
+  <caption>
+    |1) Click to call 112 (European emergency phone number). |2) Cancel (to hide the popup). You can click it if you want to look over the app. If it's an actual emergency, please call first to 112. |3) Found nearby defibrillator. By clicking on any one (the first one is always the nearest so, in case of emergency, please click it) you'll be calling to their phone number, to let them know about the incident. |4) Estimated time to arrive (from the establishment -the defibrillator owner- to the incident). |5) Establishment's name. |6) Establishment's address.
+    </caption>
+ </figure>
+ 
+ <h3>Volunteers' app</h3>
+  <figure>
+  <img src="https://raw.githubusercontent.com/GuillemBagur/GuillemBagur/main/pat-imgs/volunteers.png">
+
+  <caption>
+    |1) Found incident. By clicking there, it'll open a Google Maps with the fastest route to reach there. |2) Time it ocurred. |3) Exact coordinates. |4) The number of volunteers that are already going to help (it counts the number of times that different people has clicked that incident).
+    </caption>
+ </figure>
 
 
 
