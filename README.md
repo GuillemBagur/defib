@@ -74,7 +74,7 @@ To use the test version of the app, you may visit https://defib.onrender.com/. M
 
 
 
-<h2>How to clone and upgrade the project</h2>
+<h2>How to clone and improve the project</h2>
 To clone the project, you can type:
 git clone https://github.com/GuillemBagur/patorrat.git
 git clone git@github.com:GuillemBagur/patorrat.git
