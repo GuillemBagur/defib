@@ -36,7 +36,7 @@ The title of the project is Defib. It’s an abbreviation of defibrillator, a wo
 The colors:
 Light green (#00FF8C): this color is usually associated with hope and calm. I think both emotions can help in the stressful situation of a heart attack.
 
-Yellow (#FFF714): I chose this color because I think it combines perfectly with the green I used. This color combination is usually used by Feid, a singer that I like and sometimes I listened to while creating the app.
+Yellow (#FFF714): I chose this color because I think it combines perfectly with the green I used.
 
 
 <h2>How to access to the webapp</h2>
